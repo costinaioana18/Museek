@@ -7,6 +7,9 @@ class Login_screen():
         self.app=app
         self.menu_screen = Menu_screen(self.app)
         self.click = False
+        self.icon = pygame.image.load('icons/login.jpg')
+        self.play_icon = pygame.image.load('icons/play.jpg')
+
 
 
     def login(self):
@@ -27,14 +30,15 @@ class Login_screen():
             self.app.screen.fill((0, 0, 0))
             self.app.draw_text('login', self.app.font, (255, 255, 255), self.app.screen, 20, 20)
             mx, my = pygame.mouse.get_pos()
-            menu_button = pygame.Rect(50, 100, 200, 50)
+            menu_button = pygame.Rect(250, 450, 400, 50)
 
             if menu_button.collidepoint((mx, my)):
                 if click:
                     self.menu_screen.menu()
 
-
-            pygame.draw.rect(self.app.screen, (255, 0, 0), menu_button)
+            self.app.screen.blit(self.icon, (250, 20))
+            self.app.screen.blit(self.play_icon, (250, 450))
+            #pygame.draw.rect(self.app.screen, (255, 162, 193), menu_button)
 
 
 
