@@ -1,6 +1,7 @@
 import pygame,sys
 from pygame.locals import *
 from menu_screen import Menu_screen
+from inputBox import InputBox
 
 class Login_screen():
     def __init__(self, app):
@@ -10,12 +11,17 @@ class Login_screen():
         self.icon = pygame.image.load('icons/login.jpg')
         self.play_icon = pygame.image.load('icons/play.jpg')
 
-
-
     def login(self):
         running = True
+        username_input = InputBox(250, 200, 400, 50,"username")
+        password_input = InputBox(250, 300, 400, 50,"password")
+        input_boxes = [username_input, password_input]
+        menu_button = pygame.Rect(250, 450, 400, 50)
+
+
         while running:
             click = False
+            self.app.screen.fill((0, 0, 0))
             for event in pygame.event.get():
                 if event.type == QUIT:
                     pygame.quit()
@@ -27,19 +33,23 @@ class Login_screen():
                     if event.button == 1:
                         click = True
 
-            self.app.screen.fill((0, 0, 0))
+                username_input.handle_event(event)
+                password_input.handle_event(event)
+            for box in input_boxes:
+                box.update()
+
+
             self.app.draw_text('login', self.app.font, (255, 255, 255), self.app.screen, 20, 20)
             mx, my = pygame.mouse.get_pos()
-            menu_button = pygame.Rect(250, 450, 400, 50)
-
             if menu_button.collidepoint((mx, my)):
                 if click:
                     self.menu_screen.menu()
-
             self.app.screen.blit(self.icon, (250, 20))
             self.app.screen.blit(self.play_icon, (250, 450))
+            for box in input_boxes:
+                box.draw(self.app.screen)
+            pygame.display.flip()
+
+
             #pygame.draw.rect(self.app.screen, (255, 162, 193), menu_button)
-
-
-
             pygame.display.update()
