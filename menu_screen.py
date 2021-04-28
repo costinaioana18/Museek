@@ -32,6 +32,7 @@ class Menu_screen():
                 if event.type == KEYDOWN:
                     if event.key == K_ESCAPE:
                         running = False
+
                 if event.type == MOUSEBUTTONDOWN:
                     if event.button == 1:
                         click = True

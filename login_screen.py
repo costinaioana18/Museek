@@ -29,9 +29,16 @@ class Login_screen():
                 if event.type == KEYDOWN:
                     if event.key == K_ESCAPE:
                         running = False
+                    if event.key == K_RETURN:
+                        u=username_input.handle_event(event)
+                        p=password_input.handle_event(event)
+                        if u and p:
+                            print(u)
+
                 if event.type == MOUSEBUTTONDOWN:
                     if event.button == 1:
                         click = True
+
 
                 username_input.handle_event(event)
                 password_input.handle_event(event)

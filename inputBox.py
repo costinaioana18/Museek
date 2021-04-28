@@ -3,8 +3,8 @@ class InputBox:
 
     def __init__(self, x, y, w, h, text=''):
         self.rect = pg.Rect(x, y, w, h)
-        self.COLOR_INACTIVE = pg.Color((255, 162, 193))
-        self.COLOR_ACTIVE = pg.Color((255, 100, 193))
+        self.COLOR_INACTIVE = pg.Color((177, 114, 97))
+        self.COLOR_ACTIVE = pg.Color((255, 162, 193))
         self.FONT = pg.font.Font(None, 32)
         self.color = self.COLOR_INACTIVE
         self.text = text
@@ -27,8 +27,8 @@ class InputBox:
         if event.type == pg.KEYDOWN:
             if self.active:
                 if event.key == pg.K_RETURN:
-                    print(self.text)
-                    #return self.text
+                    #print(self.text)
+                    return self.text
                     self.text = ''
                 elif event.key == pg.K_BACKSPACE:
                     self.text = self.text[:-1]
