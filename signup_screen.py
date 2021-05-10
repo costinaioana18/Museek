@@ -14,15 +14,20 @@ class Signup_screen():
         self.u= None
         self.p=None
         self.n=None
+        self.database_handler = Database(
+            "mongodb+srv://test:test@cluster0.6borp.mongodb.net/test?retryWrites=true&w=majority")
+        self.database_handler.database_init("users")
+        self.mycol = self.database_handler.set_collection("users")
+        self.complete_fields=0
 
 
     def insert_into_database(self,name,username,password):
-        data={'username':'username', 'password':'password'}
-        database_handler = Database(("mongodb+srv://museek:museek@museeku.nclk3.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"))
-        database_handler.database_init("appUsers")
-        mycol = database_handler.set_collection("accounts")
-        mycol.insert_one(data)
-        print("inserted into database new user")
+        print("insert into database new user")
+        q=self.database_handler.exists("username",self.u)
+        if(q):
+            print("the username already exists")
+        else:
+            self.database_handler.insert({"name":self.n,"username":self.u,"password":self.p})
 
 
     def signup(self):
@@ -48,19 +53,17 @@ class Signup_screen():
                         u=username_input.handle_event(event)
                         if u!=None:
                             self.u=u
-                        else:
-                            self.u="dana"
-                        p=password_input.handle_event(event)
+                        p=password_input.handle_event(event,True)
                         if p:
                             self.p=p
                         n = nickname_input.handle_event(event)
                         if n:
                             self.n=n
-                        print(n)
-                        print(u)
-                        print(p)
-                        #if self.u and self.n and self.p:
-                        #    self.insert_into_database(self.n,self.u,self.p)
+                        print(self.n)
+                        print(self.u)
+                        print(self.p)
+                        if self.u and self.n and self.p:
+                            self.complete_fields=1
 
                 if event.type == MOUSEBUTTONDOWN:
                     if event.button == 1:
@@ -68,7 +71,7 @@ class Signup_screen():
 
                 nickname_input.handle_event(event)
                 username_input.handle_event(event)
-                password_input.handle_event(event)
+                password_input.handle_event(event,True)
             for box in input_boxes:
                 box.update()
 
@@ -76,7 +79,9 @@ class Signup_screen():
             self.app.draw_text('signup', self.app.font, (255, 255, 255), self.app.screen, 20, 20)
             mx, my = pygame.mouse.get_pos()
             if menu_button.collidepoint((mx, my)):
-                if click:
+                if click and self.complete_fields:
+                    print("insert")
+                    self.insert_into_database(self.n, self.u, self.p)
                     self.menu_screen.menu()
             self.app.screen.blit(self.icon, (250, 20))
             self.app.screen.blit(self.play_icon, (250, 450))

@@ -6,14 +6,17 @@ from signup_screen import Signup_screen
 class StartUp():
     def __init__(self):
         pygame.init()
+        self.color=(255, 162, 193)
         pygame.display.set_caption('Museek')
         self.screen = pygame.display.set_mode((900, 600), 0, 32)
-        self.font = pygame.font.SysFont(None, 20)
+        self.font = pygame.font.SysFont('simsunnsimsun', 32)
         self.click=False
         self.login_screen=Login_screen(self)
         self.signup_screen = Signup_screen(self)
         self.mainClock = pygame.time.Clock()
         self.logo = pygame.image.load('icons/museek.jpg')
+        self.signup_btn = pygame.image.load('icons/signup_btn.jpg')
+        self.login_btn = pygame.image.load('icons/login_btn.jpg')
 
     def draw_text(self,text, font, color, surface, x, y):
         textobj = font.render(text, 1, color)
@@ -50,8 +53,10 @@ class StartUp():
             if button_2.collidepoint((mx, my)):
                 if click:
                     self.signup_screen.signup()
-            pygame.draw.rect(self.screen, (255, 162, 193), button_1)
-            pygame.draw.rect(self.screen, (255, 162, 193), button_2)
+            #pygame.draw.rect(self.screen, (255, 162, 193), button_1)
+            #pygame.draw.rect(self.screen, (255, 162, 193), button_2)
+            self.screen.blit(self.login_btn, (250, 150))
+            self.screen.blit(self.signup_btn, (250, 250))
             self.screen.blit(self.logo, (250, 20))
 
 
