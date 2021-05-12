@@ -2,13 +2,13 @@ import pygame, sys
 from pygame.locals import *
 from choise_question import Choice_Question
 from piano_tutorial_screen import Piano_tutorial_screen
-
+from piano_question import Piano_Question
 
 class Piano_screen():
     def __init__(self, app):
         self.app = app
         self.click= False
-        self.q = Choice_Question(self.app, 0)
+        self.q = Piano_Question(self.app, 0,"choice")
         self.tutorial_icon = pygame.image.load('icons/tutorial.jpg')
         self.piano_tutorial_screen=Piano_tutorial_screen(self.app)
 
@@ -34,6 +34,7 @@ class Piano_screen():
             if piano_button.collidepoint((mx, my)):
                 if click:
                     print("piano_tutorial")
+
                     self.piano_tutorial_screen.piano_tutorial()
 
             self.app.screen.fill((0, 0, 0))
@@ -45,7 +46,8 @@ class Piano_screen():
             mx, my = pygame.mouse.get_pos()
             if next_button.collidepoint((mx, my)):
                 if click:
-                    self.q.set_next()
+                    self.q = Piano_Question(self.app, 0, "read")
+                    #self.q.set_next()
 
             pygame.draw.rect(self.app.screen, (255, 162, 193), next_button)
             self.app.screen.blit(self.tutorial_icon, (775, 25))
