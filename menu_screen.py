@@ -60,7 +60,9 @@ class Menu_screen():
                     self.general_kno_screen.general_kno()
             if my_account_button.collidepoint((mx, my)):
                 if click:
+                    self.my_account_screen.get_progress()
                     self.my_account_screen.my_account()
+
 
             self.app.screen.blit(self.piano_icon, (250, 150))
             self.app.screen.blit(self.guitar_icon, (250, 250))
