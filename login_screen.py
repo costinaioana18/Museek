@@ -18,6 +18,7 @@ class Login_screen():
         self.database_handler.database_init("users")
         self.mycol = self.database_handler.set_collection("users")
         self.complete_fields = 0
+        self.succes=None
 
     def database_check(self):
         print("hai verilor")
@@ -25,11 +26,12 @@ class Login_screen():
         if q:
             password = self.database_handler.get("username",self.u,"password")
             if password==self.p:
-                print ("buna tre")
+                self.succes = 1
             else:
-                ("nasoala treaba")
+                self.succes=0
+
         else:
-            print("hai sixrtr")
+            self.succes = 0
 
     def login(self):
         running = True
@@ -71,13 +73,16 @@ class Login_screen():
             for box in input_boxes:
                 box.update()
 
-
+            if (self.succes==0):
+                self.app.draw_text('Wrong username or password', self.app.font, (255, 255, 255), self.app.screen, 20,
+                                   500)
             self.app.draw_text('login', self.app.font, (255, 255, 255), self.app.screen, 20, 20)
             mx, my = pygame.mouse.get_pos()
             if menu_button.collidepoint((mx, my)):
                 if click and self.complete_fields:
                     self.database_check()
-                    self.menu_screen.menu()
+                    if(self.succes==1):
+                        self.menu_screen.menu()
             self.app.screen.blit(self.icon, (250, 20))
             self.app.screen.blit(self.play_icon, (250, 450))
             for box in input_boxes:

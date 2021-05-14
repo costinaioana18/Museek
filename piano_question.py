@@ -18,3 +18,6 @@ class Piano_Question():
 
     def display(self):
         self.q.display()
+
+    def receive_answer(self,mx,my):
+        self.q.receive_answer(mx,my)

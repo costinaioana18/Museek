@@ -44,6 +44,8 @@ class Piano_screen():
 
 
             mx, my = pygame.mouse.get_pos()
+            if click:
+                self.q.receive_answer(mx,my)
             if next_button.collidepoint((mx, my)):
                 if click:
                     self.q = Piano_Question(self.app, 0, "read")

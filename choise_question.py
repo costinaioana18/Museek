@@ -5,6 +5,7 @@ class Choice_Question():
     def __init__(self, app,question_no):
         self.question_no=question_no
         self.app=app
+        self.received_answer=None
         self.question=None
         self.answers=None
         self.right_ans=None
@@ -26,11 +27,16 @@ class Choice_Question():
         self.answers = answers
         self.right_ans = right_ans
         self.question_no+=1
+
+    def receive_answer(self,mx,my):
+        print(mx)
+        print(my)
+
     def display(self):
         self.app.draw_text(self.question, self.font, (255, 255, 255), self.app.screen, 250, 50)
         self.app.draw_text(self.answers[0], self.font, (255, 255, 255), self.app.screen, 250, 150)
-        self.app.draw_text(self.answers[1], self.font, (255, 255, 255), self.app.screen, 250, 250)
-        self.app.draw_text(self.answers[2], self.font, (255, 255, 255), self.app.screen, 250, 350)
-        self.app.draw_text(self.answers[3], self.font, (255, 255, 255), self.app.screen, 250, 450)
+        self.app.draw_text(self.answers[1], self.font, (255, 255, 255), self.app.screen, 250, 225)
+        self.app.draw_text(self.answers[2], self.font, (255, 255, 255), self.app.screen, 250, 300)
+        self.app.draw_text(self.answers[3], self.font, (255, 255, 255), self.app.screen, 250, 375)
 
 

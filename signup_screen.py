@@ -19,6 +19,8 @@ class Signup_screen():
         self.database_handler.database_init("users")
         self.mycol = self.database_handler.set_collection("users")
         self.complete_fields=0
+        self.already_exists=0
+        self.success=0
 
 
     def insert_into_database(self,name,username,password):
@@ -26,8 +28,21 @@ class Signup_screen():
         q=self.database_handler.exists("username",self.u)
         if(q):
             print("the username already exists")
+            self.already_exists=1
         else:
+            self.already_exists=0
             self.database_handler.insert({"name":self.n,"username":self.u,"password":self.p})
+            self.create_user_data()
+            self.success=1
+
+    def create_user_data(self):
+        print("here")
+        self.database_handler.database_init("users")
+        self.mycol = self.database_handler.set_collection("users_data")
+        self.database_handler.insert({"username":self.u,"piano_c_s":0,"piano_c_f":0,"piano_l_s":0,"piano_l_f":0,"piano_r_s":0,"guitar_c_s":0,"guitar_c_f":0,"gen_c_s":0,"gen_c_f":0,"gen_r_s":0,"gen_r_f":0,"date":"4 aprilie"})
+        self.database_handler.database_init("users")
+        self.mycol = self.database_handler.set_collection("users")
+        print("here")
 
 
     def signup(self):
@@ -77,18 +92,22 @@ class Signup_screen():
 
 
             self.app.draw_text('signup', self.app.font, (255, 255, 255), self.app.screen, 20, 20)
+            if (self.already_exists):
+                self.app.draw_text('The username already exists', self.app.font, (255, 255, 255), self.app.screen, 20,
+                                   500)
+
             mx, my = pygame.mouse.get_pos()
             if menu_button.collidepoint((mx, my)):
                 if click and self.complete_fields:
                     print("insert")
                     self.insert_into_database(self.n, self.u, self.p)
-                    self.menu_screen.menu()
+                    if self.success:
+                        self.menu_screen.menu()
             self.app.screen.blit(self.icon, (250, 20))
             self.app.screen.blit(self.play_icon, (250, 450))
             for box in input_boxes:
                 box.draw(self.app.screen)
             pygame.display.flip()
 
-
-            #pygame.draw.rect(self.app.screen, (255, 162, 193), menu_button)
+             #pygame.draw.rect(self.app.screen, (255, 162, 193), menu_button)
             pygame.display.update()
