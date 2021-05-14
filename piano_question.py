@@ -21,3 +21,6 @@ class Piano_Question():
 
     def receive_answer(self,mx,my):
         self.q.receive_answer(mx,my)
+
+    def check_answer(self):
+        self.q.check_answer()

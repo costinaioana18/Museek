@@ -14,6 +14,11 @@ class Choice_Question():
             "mongodb+srv://test:test@cluster0.6borp.mongodb.net/test?retryWrites=true&w=majority")
         self.database_handler.database_init("questions")
         self.mycol = self.database_handler.set_collection("piano_questions")
+        self.a_buttons=[]
+        self.buttons_coord=[(200, 150, 50, 50),(200, 225, 50, 50),(200, 300, 50, 50),(200, 375, 50, 50)]
+        for i in range(4):
+            b=pygame.Rect(self.buttons_coord[i])
+            self.a_buttons.append(b)
         self.set_next()
     def set_next(self):
         question = self.database_handler.get("question_no",self.question_no,"question")
@@ -31,6 +36,16 @@ class Choice_Question():
     def receive_answer(self,mx,my):
         print(mx)
         print(my)
+        for i in range(4):
+            if( self.a_buttons[i].collidepoint((mx, my))):
+                self.received_answer=i
+                print(i)
+
+    def check_answer(self):
+        if(self.right_ans==self.received_answer):
+            print("raspuns corect")
+        else:
+            print("raspuns gresit")
 
     def display(self):
         self.app.draw_text(self.question, self.font, (255, 255, 255), self.app.screen, 250, 50)

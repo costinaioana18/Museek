@@ -47,11 +47,13 @@ class Piano_screen():
 
             if next_button.collidepoint((mx, my)):
                 if click:
+                    self.q.check_answer()
                     self.q = Piano_Question(self.app, 0, "read")
                     #self.q.set_next()
             else:
                 if click:
-                    self.q.receive_answer(mx, my)
+                    received=self.q.receive_answer(mx, my)
+
 
             pygame.draw.rect(self.app.screen, (255, 162, 193), next_button)
             self.app.screen.blit(self.tutorial_icon, (775, 25))

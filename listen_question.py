@@ -9,7 +9,7 @@ class Listen_Question():
         self.app=app
         self.question="aa"
         self.note_icon='icons/piano_notes/do1.jpg'
-        self.right_ans="None"
+        self.right_ans=1
         self.piano_icon='icons/piano_notes/do.jpg'
         self.font=pygame.font.SysFont('simsunnsimsun', 32)
         self.note_icon1 = pygame.image.load(self.note_icon)
