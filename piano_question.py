@@ -6,6 +6,7 @@ from listen_question import Listen_Question
 class Piano_Question():
     def __init__(self, app,question_no,type):
         self.app=app
+        self.type=type
         if type=="choice":
             self.q=Choice_Question(self.app, 0)
         if type=="read":
@@ -14,7 +15,10 @@ class Piano_Question():
             self.q = Listen_Question(self.app, 0)
 
     def set_next(self):
-        self.q.set_next()
+        if self.type=="choice":
+            self.q.set_next()
+        if self.type=="read" or self.type=="listen":
+            self.q.set_random()
 
     def display(self):
         self.q.display()

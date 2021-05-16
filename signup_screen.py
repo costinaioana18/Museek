@@ -3,6 +3,7 @@ from pygame.locals import *
 from menu_screen import Menu_screen
 from inputBox import InputBox
 from database import Database
+from encryption import *
 
 class Signup_screen():
     def __init__(self, app):
@@ -21,6 +22,8 @@ class Signup_screen():
         self.complete_fields=0
         self.already_exists=0
         self.success=0
+
+
 
 
     def insert_into_database(self,name,username,password):
@@ -70,7 +73,7 @@ class Signup_screen():
                             self.u=u
                         p=password_input.handle_event(event,True)
                         if p:
-                            self.p=p
+                            self.p=encrypt(p)
                         n = nickname_input.handle_event(event)
                         if n:
                             self.n=n

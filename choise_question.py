@@ -42,10 +42,19 @@ class Choice_Question():
                 print(i)
 
     def check_answer(self):
+        self.database_handler.database_init("users")
+        self.mycol = self.database_handler.set_collection("users_data")
         if(self.right_ans==self.received_answer):
             print("raspuns corect")
+
+            self.database_handler.increment_database("username","costina","piano_c_s",1)
+            print("incremented")
+
         else:
             print("raspuns gresit")
+            self.database_handler.increment_database("username", "costina", "piano_c_f", 1)
+        self.database_handler.database_init("questions")
+        self.mycol = self.database_handler.set_collection("piano_questions")
 
     def display(self):
         self.app.draw_text(self.question, self.font, (255, 255, 255), self.app.screen, 250, 50)

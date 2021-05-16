@@ -48,8 +48,8 @@ class Piano_screen():
             if next_button.collidepoint((mx, my)):
                 if click:
                     self.q.check_answer()
-                    self.q = Piano_Question(self.app, 0, "read")
-                    #self.q.set_next()
+                    self.q = Piano_Question(self.app, 0, "listen")
+                    self.q.set_next()
             else:
                 if click:
                     received=self.q.receive_answer(mx, my)

@@ -2,6 +2,7 @@ import pygame, sys
 from pygame.locals import *
 from database import Database
 from piano_sound import Piano_sound
+import random
 
 class Read_Question():
     def __init__(self, app,question_no):
@@ -10,12 +11,18 @@ class Read_Question():
         self.received_question=None
         self.received_answer = None
         self.app=app
-        self.question="aa"
+        self.question="Press the written note"
         self.note_icon='icons/piano_notes/do1.jpg'
-        self.right_ans=3
+        self.right_ans=0
+        self.piano_sound=Piano_sound("sounds/piano-c.wav")
+        self.notes_icon_list1 = ['icons/piano_notes/do1.jpg', 'icons/piano_notes/dod1.jpg', 'icons/piano_notes/re1.jpg',
+                                 'icons/piano_notes/mib1.jpg', 'icons/piano_notes/mi1.jpg', 'icons/piano_notes/fa1.jpg',
+                                 'icons/piano_notes/fad1.jpg', 'icons/piano_notes/sol1.jpg',
+                                 'icons/piano_notes/lab1.jpg', 'icons/piano_notes/la1.jpg',
+                                 'icons/piano_notes/sib1.jpg', 'icons/piano_notes/si1.jpg']
+
         self.piano_icon='icons/piano_notes/do.jpg'
         self.font=pygame.font.SysFont('simsunnsimsun', 32)
-        self.piano_sound = Piano_sound("sounds/piano-c.wav")
         self.a_buttons = []
         self.buttons_coord = [(450, 324, 30, 200), (466, 200, 18, 122), (484, 324, 30, 200),
                                         (501, 200, 18, 122), (518, 324, 30, 200), (534, 324, 30, 200),
@@ -29,10 +36,7 @@ class Read_Question():
             b=pygame.Rect(btn)
             self.a_buttons.append(b)
 
-        # self.database_handler = Database(
-        #     "mongodb+srv://test:test@cluster0.6borp.mongodb.net/test?retryWrites=true&w=majority")
-        # self.database_handler.database_init("questions")
-        # self.mycol = self.database_handler.set_collection("piano_questions")
+
         self.note_icon1 = pygame.image.load(self.note_icon)
         self.piano_icon1 = pygame.image.load(self.piano_icon)
         #self.set_next()
@@ -43,8 +47,8 @@ class Read_Question():
         for i in range(12):
             if( self.a_buttons[i].collidepoint((mx, my))):
                 print(i)
-                self.received_answer=i
                 self.piano_sound.set_note(self.sounds_list[i])
+                self.received_answer=i
                 self.piano_sound.play()
 
     def check_answer(self):
@@ -53,12 +57,15 @@ class Read_Question():
         else:
             print("raspuns gresit")
 
-    def set_next(self):
-        question="cf"
-        right_ans=0
-        self.question = question
-        self.right_ans = right_ans
-        self.question_no+=1
+    def set_random(self):
+        i=random.randint(0, 11)
+        print('stil')
+        print(i)
+        self.right_ans = i
+        self.note_icon1=pygame.image.load(self.notes_icon_list1[i])
+        print('stil')
+        print(i)
+
     def display(self):
         self.app.draw_text(self.question, self.font, (255, 255, 255), self.app.screen, 250, 50)
         self.app.screen.blit(self.note_icon1, (250, 250))

@@ -32,3 +32,11 @@ class Database:
     def get(self,key,value,to_get):
         result = self.__collection_handler.find_one({key: value})
         return result[to_get]
+
+    def update_database(self, key, key_value, to_update_key, to_update_value):
+        pass
+
+    def increment_database(self, key, key_value, to_update_key, pas=1):
+        self.__collection_handler.update_one({key: key_value},{"$inc":{to_update_key:pas}})
+        print("incremented")
+

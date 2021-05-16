@@ -3,6 +3,7 @@ from pygame.locals import *
 from menu_screen import Menu_screen
 from inputBox import InputBox
 from database import Database
+from encryption import *
 
 class Login_screen():
     def __init__(self, app):
@@ -57,7 +58,8 @@ class Login_screen():
                         if u!=None:
                             self.u=u
                         if p:
-                            self.p=p
+                            self.p=encrypt(p)
+
                         print(self.u)
                         print(self.p)
                         if self.u and self.p:
