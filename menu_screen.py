@@ -37,7 +37,7 @@ class Menu_screen():
                     if event.button == 1:
                         click = True
             self.app.screen.fill((0, 0, 0))
-            self.app.draw_text('menu', self.app.font, (255, 255, 255), self.app.screen, 20, 20)
+            self.app.draw_text(self.app.current_user, self.app.font, (255, 255, 255), self.app.screen, 20, 20)
 
             mx, my = pygame.mouse.get_pos()
             piano_button = pygame.Rect(250, 150, 400, 50)
@@ -61,6 +61,7 @@ class Menu_screen():
             if my_account_button.collidepoint((mx, my)):
                 if click:
                     self.my_account_screen.get_progress()
+                    print("here")
                     self.my_account_screen.my_account()
 
 

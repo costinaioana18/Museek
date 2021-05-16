@@ -15,8 +15,7 @@ class Signup_screen():
         self.u= None
         self.p=None
         self.n=None
-        self.database_handler = Database(
-            "mongodb+srv://test:test@cluster0.6borp.mongodb.net/test?retryWrites=true&w=majority")
+        self.database_handler = self.app.database_handler
         self.database_handler.database_init("users")
         self.mycol = self.database_handler.set_collection("users")
         self.complete_fields=0
@@ -37,12 +36,13 @@ class Signup_screen():
             self.database_handler.insert({"name":self.n,"username":self.u,"password":self.p})
             self.create_user_data()
             self.success=1
+            self.app.set_user(self.u)
 
     def create_user_data(self):
         print("here")
         self.database_handler.database_init("users")
         self.mycol = self.database_handler.set_collection("users_data")
-        self.database_handler.insert({"username":self.u,"piano_c_s":20,"piano_c_f":0,"piano_l_s":0,"piano_l_f":0,"piano_r_s":0,"guitar_c_s":0,"guitar_c_f":0,"gen_c_s":0,"gen_c_f":0,"gen_r_s":0,"gen_r_f":0,"date":"4 aprilie"})
+        self.database_handler.insert({"username":self.u,"piano_c_s":20,"piano_c_f":0,"piano_l_s":0,"piano_l_f":0,"piano_r_s":0,"piano_r_f":0,"guitar_c_s":0,"guitar_c_f":0,"gen_c_s":0,"gen_c_f":0,"gen_r_s":0,"gen_r_f":0,"date":"4 aprilie"})
         self.database_handler.database_init("users")
         self.mycol = self.database_handler.set_collection("users")
         print("here")

@@ -2,6 +2,7 @@ import pygame,sys
 from pygame.locals import *
 from login_screen import Login_screen
 from signup_screen import Signup_screen
+from database import *
 
 class StartUp():
     def __init__(self):
@@ -9,6 +10,9 @@ class StartUp():
         self.color=(255, 162, 193)
         pygame.display.set_caption('Museek')
         self.screen = pygame.display.set_mode((900, 600), 0, 32)
+        self.database_handler = Database(
+            "mongodb+srv://test:test@cluster0.6borp.mongodb.net/test?retryWrites=true&w=majority")
+        self.current_user=None
         self.font = pygame.font.SysFont('simsunnsimsun', 32)
         self.click=False
         self.login_screen=Login_screen(self)
@@ -17,6 +21,9 @@ class StartUp():
         self.logo = pygame.image.load('icons/museek.jpg')
         self.signup_btn = pygame.image.load('icons/signup_btn.jpg')
         self.login_btn = pygame.image.load('icons/login_btn.jpg')
+
+    def set_user(self,username):
+        self.current_user=username
 
     def draw_text(self,text, font, color, surface, x, y):
         textobj = font.render(text, 1, color)

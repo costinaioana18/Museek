@@ -11,6 +11,7 @@ class Read_Question():
         self.received_question=None
         self.received_answer = None
         self.app=app
+        self.database_handler = self.app.database_handler
         self.question="Press the written note"
         self.note_icon='icons/piano_notes/do1.jpg'
         self.right_ans=0
@@ -52,9 +53,13 @@ class Read_Question():
                 self.piano_sound.play()
 
     def check_answer(self):
+        self.database_handler.database_init("users")
+        self.mycol = self.database_handler.set_collection("users_data")
         if(self.right_ans==self.received_answer):
+            self.database_handler.increment_database("username", self.app.current_user, "piano_r_s", 1)
             print("raspuns corect")
         else:
+            self.database_handler.increment_database("username", self.app.current_user, "piano_r_f", 1)
             print("raspuns gresit")
 
     def set_random(self):

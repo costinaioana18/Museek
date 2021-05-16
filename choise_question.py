@@ -10,8 +10,7 @@ class Choice_Question():
         self.answers=None
         self.right_ans=None
         self.font=pygame.font.SysFont('simsunnsimsun', 32)
-        self.database_handler = Database(
-            "mongodb+srv://test:test@cluster0.6borp.mongodb.net/test?retryWrites=true&w=majority")
+        self.database_handler = self.app.database_handler
         self.database_handler.database_init("questions")
         self.mycol = self.database_handler.set_collection("piano_questions")
         self.a_buttons=[]
@@ -47,12 +46,12 @@ class Choice_Question():
         if(self.right_ans==self.received_answer):
             print("raspuns corect")
 
-            self.database_handler.increment_database("username","costina","piano_c_s",1)
+            self.database_handler.increment_database("username",self.app.current_user,"piano_c_s",1)
             print("incremented")
 
         else:
             print("raspuns gresit")
-            self.database_handler.increment_database("username", "costina", "piano_c_f", 1)
+            self.database_handler.increment_database("username", self.app.current_user, "piano_c_f", 1)
         self.database_handler.database_init("questions")
         self.mycol = self.database_handler.set_collection("piano_questions")
 

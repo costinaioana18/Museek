@@ -6,21 +6,26 @@ class My_account_screen():
     def __init__(self, app):
         self.app = app
         self.click= False
-        self.database_handler = Database(
-            "mongodb+srv://test:test@cluster0.6borp.mongodb.net/test?retryWrites=true&w=majority")
+        self.database_handler = self.app.database_handler
         self.database_handler.database_init("users")
         self.mycol = self.database_handler.set_collection("users_data")
         self.p_progress = 0
         self.g_progress = 0
         self.gn_progress = 0
-        self.username = "costinaioana"
 
 
 
     def get_progress(self):
-        user = self.database_handler.exists("username", self.username )
+        print("gettin")
+        self.p_progress=0
+        self.database_handler.database_init("users")
+        self.mycol = self.database_handler.set_collection("users_data")
+        print(self.app.current_user)
+        user = self.database_handler.exists("username", self.app.current_user )
         if user:
-            self.p_progress = self.database_handler.get("username",self.username,"piano_c_s")
+            self.p_progress += self.database_handler.get("username",self.app.current_user,"piano_c_s")
+            self.p_progress += self.database_handler.get("username", self.app.current_user, "piano_l_s")
+            self.p_progress += self.database_handler.get("username", self.app.current_user, "piano_r_s")
             print("progress")
             print(self.p_progress)
 
@@ -42,7 +47,6 @@ class My_account_screen():
             self.app.draw_text('Progress', self.app.font, self.app.color, self.app.screen, 330, 70)
             self.app.draw_text('Graduation', self.app.font, self.app.color, self.app.screen, 630, 70)
             self.app.draw_text('my account', self.app.font, self.app.color, self.app.screen, 20, 20)
-
 
 
             p_progress=int(self.p_progress*200/100)

@@ -5,15 +5,12 @@ def XoR(t1,t2):
     return bytes([_a ^ _b for _a, _b in zip(t1, t2)])
 
 def ECBencode(plain_text,key):
-    print("\n ...encrypting using ECB...\n")
     wholeCipherText=b''
     plain_blocks=split_blocks(plain_text)
     for plain_block in plain_blocks:
         plain_block=plain_block.encode()
         ciphertext=XoR(plain_block,key)
         wholeCipherText+=ciphertext[0:16]
-        #print(ciphertext)
-    #print(wholeCipherText)
     return wholeCipherText
 
 def encrypt(text):

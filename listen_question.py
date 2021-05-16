@@ -8,6 +8,7 @@ class Listen_Question():
     def __init__(self, app,question_no):
         print("listen")
         self.question_no=question_no
+        self.database_handler = app.database_handler
         self.received_question=None
         self.received_answer = None
         self.app=app
@@ -56,10 +57,14 @@ class Listen_Question():
             self.sound.play()
 
     def check_answer(self):
+        self.database_handler.database_init("users")
+        self.mycol = self.database_handler.set_collection("users_data")
         if(self.right_ans==self.received_answer):
             print("raspuns corect")
+            self.database_handler.increment_database("username", self.app.current_user, "piano_l_s", 1)
         else:
             print("raspuns gresit")
+            self.database_handler.increment_database("username", self.app.current_user, "piano_l_f", 1)
 
     def set_random(self):
         i=random.randint(0, 11)

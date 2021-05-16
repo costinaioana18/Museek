@@ -14,8 +14,7 @@ class Login_screen():
         self.play_icon = pygame.image.load('icons/play.jpg')
         self.u = None
         self.p = None
-        self.database_handler = Database(
-            "mongodb+srv://test:test@cluster0.6borp.mongodb.net/test?retryWrites=true&w=majority")
+        self.database_handler = self.app.database_handler
         self.database_handler.database_init("users")
         self.mycol = self.database_handler.set_collection("users")
         self.complete_fields = 0
@@ -28,6 +27,7 @@ class Login_screen():
             password = self.database_handler.get("username",self.u,"password")
             if password==self.p:
                 self.succes = 1
+                self.app.set_user(self.u)
             else:
                 self.succes=0
 
