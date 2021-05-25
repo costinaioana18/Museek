@@ -39,7 +39,7 @@ class Listen_Question():
 
 
         self.note_icon1 = pygame.image.load('icons/play_icon.jpg')
-        self.piano_icon1 = pygame.image.load('icons/piano_notes/do.jpg')
+        self.piano_icon1 = pygame.image.load('icons/pianoo.jpg')
         #self.set_next()
 
     def receive_answer(self,mx,my):

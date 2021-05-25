@@ -59,7 +59,7 @@ class Piano_notes_screen():
                     if event.button == 1:
                         click = True
             self.app.screen.fill((0, 0, 0))
-            self.app.draw_text('piano notes screen', self.app.font, (255, 255, 255), self.app.screen, 20, 20)
+            #self.app.draw_text('piano notes screen', self.app.font, (255, 255, 255), self.app.screen, 20, 20)
 
             if  self.sound_piano_button.collidepoint((mx, my)):
                 if click:
@@ -88,6 +88,8 @@ class Piano_notes_screen():
             self.app.screen.blit(self.note_icon2, (250, 250))
             self.app.screen.blit(self.next_icon, (400, 450))
             self.app.draw_text(self.note_title, self.font, (255, 255, 255), self.app.screen, 400, 50)
+            self.app.screen.blit(self.app.bg, (20, 50))
+            self.app.screen.blit(self.app.bg1, (700, 50))
             #pygame.draw.rect(self.app.screen, (255, 162, 193), self.sound_play_button)
 
             pygame.display.update()

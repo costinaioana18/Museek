@@ -70,6 +70,8 @@ class Menu_screen():
             self.app.screen.blit(self.recommended_icon, (250, 350))
             self.app.screen.blit(self.general_kno_icon, (250, 450))
             self.app.screen.blit(self.my_account_icon, (400, 525))
+            self.app.screen.blit(self.app.bg, (20, 50))
+            self.app.screen.blit(self.app.bg1, (700, 50))
             # pygame.draw.rect(self.app.screen, (255, 162, 193), piano_button)
             # pygame.draw.rect(self.app.screen, (255, 162, 193), guitar_button)
             # pygame.draw.rect(self.app.screen, (255, 162, 193), recommended_button)

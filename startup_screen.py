@@ -19,6 +19,8 @@ class StartUp():
         self.signup_screen = Signup_screen(self)
         self.mainClock = pygame.time.Clock()
         self.logo = pygame.image.load('icons/museek.jpg')
+        self.bg = pygame.image.load('icons/art.jpg')
+        self.bg1 = pygame.image.load('icons/art_flipped.jpg')
         self.signup_btn = pygame.image.load('icons/signup_btn.jpg')
         self.login_btn = pygame.image.load('icons/login_btn.jpg')
 
@@ -47,7 +49,7 @@ class StartUp():
                         click = True
 
             self.screen.fill((0, 0, 0))
-            self.draw_text("main menu", self.font, (255, 255, 255), self.screen, 20,20)
+            #self.draw_text("main menu", self.font, (255, 255, 255), self.screen, 20,20)
 
             mx, my = pygame.mouse.get_pos()
 
@@ -65,7 +67,7 @@ class StartUp():
             self.screen.blit(self.login_btn, (250, 150))
             self.screen.blit(self.signup_btn, (250, 250))
             self.screen.blit(self.logo, (250, 20))
-
-
+            self.screen.blit(self.bg, (20, 50))
+            self.screen.blit(self.bg1, (700, 50))
             pygame.display.update()
             self.mainClock.tick(60)

@@ -23,6 +23,8 @@ class Recommended_screen():
                         click = True
             self.app.screen.fill((0, 0, 0))
             self.app.draw_text('recommended', self.app.font, (255, 255, 255), self.app.screen, 20, 20)
+            self.app.screen.blit(self.app.bg, (20, 50))
+            self.app.screen.blit(self.app.bg1, (700, 50))
 
 
 

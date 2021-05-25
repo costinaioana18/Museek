@@ -21,8 +21,13 @@ class Read_Question():
                                  'icons/piano_notes/fad1.jpg', 'icons/piano_notes/sol1.jpg',
                                  'icons/piano_notes/lab1.jpg', 'icons/piano_notes/la1.jpg',
                                  'icons/piano_notes/sib1.jpg', 'icons/piano_notes/si1.jpg']
+        self.notes_icon_list = ['icons/piano_notes/do.jpg', 'icons/piano_notes/dod.jpg', 'icons/piano_notes/re.jpg',
+                                'icons/piano_notes/mib.jpg', 'icons/piano_notes/mi.jpg', 'icons/piano_notes/fa.jpg',
+                                'icons/piano_notes/fad.jpg', 'icons/piano_notes/sol.jpg',
+                                'icons/piano_notes/lab.jpg', 'icons/piano_notes/la.jpg', 'icons/piano_notes/sib.jpg',
+                                'icons/piano_notes/si.jpg']
 
-        self.piano_icon='icons/piano_notes/do.jpg'
+        self.piano_icon='icons/pianoo.jpg'
         self.font=pygame.font.SysFont('simsunnsimsun', 32)
         self.a_buttons = []
         self.buttons_coord = [(450, 324, 30, 200), (466, 200, 18, 122), (484, 324, 30, 200),
@@ -49,6 +54,7 @@ class Read_Question():
             if( self.a_buttons[i].collidepoint((mx, my))):
                 print(i)
                 self.piano_sound.set_note(self.sounds_list[i])
+                self.piano_icon1=pygame.image.load(self.notes_icon_list[i])
                 self.received_answer=i
                 self.piano_sound.play()
 

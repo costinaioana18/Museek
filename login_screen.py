@@ -78,7 +78,7 @@ class Login_screen():
             if (self.succes==0):
                 self.app.draw_text('Wrong username or password', self.app.font, (255, 255, 255), self.app.screen, 20,
                                    500)
-            self.app.draw_text('login', self.app.font, (255, 255, 255), self.app.screen, 20, 20)
+            #self.app.draw_text('login', self.app.font, (255, 255, 255), self.app.screen, 20, 20)
             mx, my = pygame.mouse.get_pos()
             if menu_button.collidepoint((mx, my)):
                 if click and self.complete_fields:
@@ -89,6 +89,9 @@ class Login_screen():
             self.app.screen.blit(self.play_icon, (250, 450))
             for box in input_boxes:
                 box.draw(self.app.screen)
+
+            self.app.screen.blit(self.app.bg, (20, 50))
+            self.app.screen.blit(self.app.bg1, (700, 50))
             pygame.display.flip()
 
             pygame.display.update()
