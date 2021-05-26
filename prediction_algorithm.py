@@ -21,10 +21,15 @@ class Prediction_Algorithm:
         clf = svm.SVC(probability=True)
         clf.fit(vectorX, vectorY)
         self.trained_model=clf
-        self.predict([0,0,0,1,0,1])
+        #self.predict([0,0,0,1,0,1])
 
 
 
     def predict(self,type):
-        a = self.trained_model.predict([type])
+        a = self.trained_model.predict(type)
         print(a)
+
+    def get_probabillity(self,type):
+        a=self.trained_model.predict_proba(type)[:,1]
+        print(a)
+        return a
