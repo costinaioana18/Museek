@@ -8,7 +8,7 @@ import random
 
 class Piano_screen():
     def __init__(self, app):
-        self.checked=""
+        self.checked=0
         self.app = app
         self.click= False
         self.q = Piano_Question(self.app, 0,"choice")
@@ -56,17 +56,23 @@ class Piano_screen():
             if next_button.collidepoint((mx, my)):
 
                 if click:
-                    self.started=1
-                    self.q.check_answer()
-                    n=self.count%3
-                    if(n==1):
-                        self.q = Piano_Question(self.app, 0, "listen")
-                    elif(n==2):
-                        self.q = Piano_Question(self.app, 0, "read")
+                    if(self.started==0):
+                        self.checked=1
+                    self.started = 1
+                    if self.checked==1:
+                        n=self.count%3
+                        if(n==1):
+                            self.q = Piano_Question(self.app, 0, "listen")
+                        elif(n==2):
+                            self.q = Piano_Question(self.app, 0, "read")
+                        else:
+                            self.q = Piano_Question(self.app, 0, "choice")
+                        self.q.set_next()
+                        self.count+=1
+                        self.checked=0
                     else:
-                        self.q = Piano_Question(self.app, 0, "choice")
-                    self.q.set_next()
-                    self.count+=1
+                        self.q.check_answer()
+                        self.checked=1
             else:
                 if click:
                     received=self.q.receive_answer(mx, my)
@@ -80,5 +86,4 @@ class Piano_screen():
             if(self.started==0):
                 self.app.draw_text('Press the button to start the test', self.app.font, (255, 255, 255), self.app.screen, 120, 120)
 
-            self.app.draw_text(self.checked, self.app.font, (255, 255, 255), self.app.screen, 250, 100)
             pygame.display.update()

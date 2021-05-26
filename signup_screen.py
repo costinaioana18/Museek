@@ -42,7 +42,7 @@ class Signup_screen():
         print("here")
         self.database_handler.database_init("users")
         self.mycol = self.database_handler.set_collection("users_data")
-        self.database_handler.insert({"username":self.u,"piano_c_s":20,"piano_c_f":0,"piano_l_s":0,"piano_l_f":0,"piano_r_s":0,"piano_r_f":0,"guitar_c_s":0,"guitar_c_f":0,"gen_c_s":0,"gen_c_f":0,"gen_r_s":0,"gen_r_f":0,"date":"4 aprilie"})
+        self.database_handler.insert({"username":self.u,"piano_c_s":0,"piano_c_f":0,"piano_l_s":0,"piano_l_f":0,"piano_r_s":0,"piano_r_f":0,"guitar_c_s":0,"guitar_c_f":0,"gen_c_s":0,"gen_c_f":0,"gen_r_s":0,"gen_r_f":0,"date":"4 aprilie"})
         self.database_handler.database_init("users")
         self.mycol = self.database_handler.set_collection("users")
         print("here")

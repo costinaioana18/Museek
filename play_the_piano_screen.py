@@ -44,7 +44,7 @@ class Play_the_piano_screen():
             self.buttons.append(pygame.Rect(coord))
         self.hands_free_button=pygame.Rect(0,0,100,100)
 
-    def text_to_note(self,text):
+    def text_to_command(self,text):
         selected=-1
         greetings=["hello","hi","good morning","good evening","good afternoon","goodnight","have a great day"]
         negations=["don't","do not","avoid"]
@@ -119,7 +119,7 @@ class Play_the_piano_screen():
 
                     n=Hands_Free()
                     text=n.voice_input()
-                    nott=self.text_to_note(text)
+                    nott=self.text_to_command(text)
 
                     if nott!=-1:
                         if (playing):

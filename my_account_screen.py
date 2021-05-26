@@ -12,6 +12,7 @@ class My_account_screen():
         self.p_progress = 0
         self.g_progress = 0
         self.gn_progress = 0
+        self.total_piano=50
 
 
 
@@ -28,6 +29,18 @@ class My_account_screen():
             self.p_progress += self.database_handler.get("username", self.app.current_user, "piano_r_s")
             print("progress")
             print(self.p_progress)
+
+    def graduation_expect(self):
+        left=self.total_piano-self.p_progress
+        vector=[]
+        for topic in range(11):
+                vector.append([1,0,0,0,0,topic])
+        for topic in range(11):
+                vector.append([0,1,0,0,0,topic])
+        for topic in range(11):
+                vector.append([0,0,1,0,0,topic])
+        print(vector)
+
 
     def my_account(self):
         running = True

@@ -6,8 +6,11 @@ import random
 
 class Read_Question():
     def __init__(self, app,question_no):
+        self.checked = 0
         print("read")
         self.question_no=question_no
+        self.mx=None
+        self.my=None
         self.received_question=None
         self.received_answer = None
         self.app=app
@@ -16,6 +19,11 @@ class Read_Question():
         self.note_icon='icons/piano_notes/do1.jpg'
         self.right_ans=0
         self.piano_sound=Piano_sound("sounds/piano-c.wav")
+        self.right_icons = ['icons/right_piano/do.jpg', 'icons/right_piano/dod.jpg', 'icons/right_piano/re.jpg',
+                            'icons/right_piano/mib.jpg', 'icons/right_piano/mi.jpg', 'icons/right_piano/fa.jpg',
+                            'icons/right_piano/fad.jpg', 'icons/right_piano/sol.jpg',
+                            'icons/right_piano/lab.jpg', 'icons/right_piano/la.jpg', 'icons/right_piano/sib.jpg',
+                            'icons/right_piano/si.jpg']
         self.notes_icon_list1 = ['icons/piano_notes/do1.jpg', 'icons/piano_notes/dod1.jpg', 'icons/piano_notes/re1.jpg',
                                  'icons/piano_notes/mib1.jpg', 'icons/piano_notes/mi1.jpg', 'icons/piano_notes/fa1.jpg',
                                  'icons/piano_notes/fad1.jpg', 'icons/piano_notes/sol1.jpg',
@@ -57,16 +65,34 @@ class Read_Question():
                 self.piano_icon1=pygame.image.load(self.notes_icon_list[i])
                 self.received_answer=i
                 self.piano_sound.play()
+                self.mx=mx
+                self.my=my
 
     def check_answer(self):
+        self.checked = 1
+
         self.database_handler.database_init("users")
         self.mycol = self.database_handler.set_collection("users_data")
         if(self.right_ans==self.received_answer):
+
             self.database_handler.increment_database("username", self.app.current_user, "piano_r_s", 1)
             print("raspuns corect")
+
+
+            self.database_handler.database_init("users_progress")
+            self.mycol = self.database_handler.set_collection(self.app.current_user)
+            self.database_handler.insert(
+                {"piano_c": 0, "piano_l": 0, "piano_r": 1, "gen_c": 0, "gen_r": 0,
+                 "topic": self.right_ans, "result": 1})
         else:
+            self.checked=-1
             self.database_handler.increment_database("username", self.app.current_user, "piano_r_f", 1)
             print("raspuns gresit")
+            self.database_handler.database_init("users_progress")
+            self.mycol = self.database_handler.set_collection(self.app.current_user)
+            self.database_handler.insert(
+                {"piano_c": 0, "piano_l": 0, "piano_r": 1, "gen_c": 0, "gen_r": 0,
+                 "topic": self.right_ans, "result": 0})
 
     def set_random(self):
         i=random.randint(0, 11)
@@ -80,6 +106,16 @@ class Read_Question():
     def display(self):
         self.app.draw_text(self.question, self.font, (255, 255, 255), self.app.screen, 250, 50)
         self.app.screen.blit(self.note_icon1, (250, 250))
+
+
+
+
         self.app.screen.blit(self.piano_icon1, (450, 200))
 
-
+        if (self.checked != 0):
+            self.piano_icon1 = pygame.image.load(self.right_icons[self.right_ans])
+            if (self.checked == -1):
+                pygame.draw.line(self.app.screen, (255, 1, 1), (self.mx - 10, self.my + 10),
+                                 (self.mx + 10, self.my - 10))
+                pygame.draw.line(self.app.screen, (255, 1, 1), (self.mx - 10, self.my - 10),
+                                 (self.mx + 10, self.my + 10))

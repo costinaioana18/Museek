@@ -61,6 +61,7 @@ class Menu_screen():
             if my_account_button.collidepoint((mx, my)):
                 if click:
                     self.my_account_screen.get_progress()
+                    self.my_account_screen.graduation_expect()
                     print("here")
                     self.my_account_screen.my_account()
 

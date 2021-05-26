@@ -9,10 +9,12 @@ class Choice_Question():
         self.question_no=question_no
         self.outcome=""
         self.app=app
+        self.image="None"
+        self.topic=None
         self.received_answer=-2
         self.question=""
         self.answers=["","","",""]
-        self.right_ans=""
+        self.right_ans=-2
         self.font=pygame.font.SysFont('simsunnsimsun', 32)
         self.database_handler = self.app.database_handler
         self.database_handler.database_init("questions")
@@ -30,6 +32,7 @@ class Choice_Question():
         s_count += self.database_handler.get("username", self.app.current_user, "piano_c_f")
         print("TOTAL")
         print(s_count )
+        self.question_no=s_count
 
 
 
@@ -44,6 +47,8 @@ class Choice_Question():
         a3 = self.database_handler.get("question_no", self.question_no, "a3")
         a4 = self.database_handler.get("question_no", self.question_no, "a4")
         right_ans = self.database_handler.get("question_no", self.question_no, "correct")
+        self.image = self.database_handler.get("question_no", self.question_no, "image")
+        self.topic = self.database_handler.get("question_no", self.question_no, "topic")
         answers=[a1,a2,a3,a4]
         self.question = question
         self.answers = answers
@@ -63,15 +68,26 @@ class Choice_Question():
         self.database_handler.database_init("users")
         self.mycol = self.database_handler.set_collection("users_data")
         if(self.right_ans==self.received_answer):
-            print("raspuns corect")
-
-
+            self.outcome="Congratulations!"
             self.database_handler.increment_database("username",self.app.current_user,"piano_c_s",1)
             print("incremented")
+            self.database_handler.database_init("users_progress")
+            self.mycol = self.database_handler.set_collection(self.app.current_user)
+            self.database_handler.insert(
+                {"piano_c": 1,  "piano_l": 0,  "piano_r": 0, "gen_c": 0,  "gen_r": 0,
+                 "topic": self.topic, "result": 1})
 
         else:
-            print("raspuns gresit")
+            self.outcome="I'm sorry! That was not correct!"
             self.database_handler.increment_database("username", self.app.current_user, "piano_c_f", 1)
+            self.database_handler.database_init("users_progress")
+            self.mycol = self.database_handler.set_collection(self.app.current_user)
+            self.database_handler.insert(
+                {"piano_c": 1, "piano_l": 0, "piano_r": 0, "gen_c": 0, "gen_r": 0,
+                 "topic": self.topic, "result": 0})
+
+
+
         self.database_handler.database_init("questions")
         self.mycol = self.database_handler.set_collection("piano_questions")
 
@@ -79,8 +95,7 @@ class Choice_Question():
 
     def display(self):
         self.app.draw_text(self.question, self.font, (255, 255, 255), self.app.screen, 250, 50)
-        if(self.checked):
-            self.app.draw_text(self.outcome, self.font, (255, 255, 255), self.app.screen, 250, 100)
+
 
 
         for i in range(4):
@@ -98,5 +113,13 @@ class Choice_Question():
         if self.question !="":
             for i in range(4):
                 pygame.draw.rect(self.app.screen, (255, 162, 193), pygame.Rect(self.buttons_coord[i]), 1)
+            if(self.image!="None"):
+                self.app.screen.blit(pygame.image.load(self.image), (450, 200))
+
+
+        if (self.checked) == 1 and self.received_answer>-1:
+            self.app.draw_text(self.outcome, self.font, (255, 255, 255), self.app.screen, 250, 100)
+            pygame.draw.rect(self.app.screen, (255, 1, 1), self.buttons_coord[self.received_answer])
+            pygame.draw.rect(self.app.screen, (1, 255, 1), self.buttons_coord[self.right_ans])
 
 

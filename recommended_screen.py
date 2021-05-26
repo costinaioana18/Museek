@@ -1,5 +1,6 @@
 import pygame, sys
 from pygame.locals import *
+from prediction_algorithm import *
 
 
 class Recommended_screen():
@@ -8,6 +9,7 @@ class Recommended_screen():
         self.click= False
 
     def recommended(self):
+        next_button = pygame.Rect(250, 450, 400, 50)
         running = True
         while running:
             click = False
@@ -26,6 +28,10 @@ class Recommended_screen():
             self.app.screen.blit(self.app.bg, (20, 50))
             self.app.screen.blit(self.app.bg1, (700, 50))
 
-
+            mx, my = pygame.mouse.get_pos()
+            if next_button.collidepoint((mx, my)):
+                if click:
+                    rec=Prediction_Algorithm(self.app)
+                    rec.train_model()
 
             pygame.display.update()
