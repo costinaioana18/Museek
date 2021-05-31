@@ -1,7 +1,5 @@
 import pygame, sys
-from pygame.locals import *
-from database import Database
-from piano_sound import Piano_sound
+from useful_classes.piano_sound import Piano_sound
 import random
 
 class Read_Question():

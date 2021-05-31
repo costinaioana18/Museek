@@ -1,9 +1,8 @@
 import pygame,sys
 from pygame.locals import *
-from menu_screen import Menu_screen
-from inputBox import InputBox
-from database import Database
-from encryption import *
+from screens.menu_screen import Menu_screen
+from useful_classes.inputBox import InputBox
+from useful_classes.encryption import *
 
 class Login_screen():
     def __init__(self, app):

@@ -1,6 +1,4 @@
 import pygame, sys
-from pygame.locals import *
-from database import Database
 class Gen_Kno_Question():
     def __init__(self, app,question_no):
         self.question_no=question_no

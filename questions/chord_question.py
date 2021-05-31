@@ -1,5 +1,5 @@
 import random
-from database import *
+from useful_classes.database import *
 import pygame
 
 

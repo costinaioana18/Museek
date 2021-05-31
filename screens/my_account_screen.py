@@ -1,8 +1,7 @@
 import pygame, sys
 from pygame.locals import *
 from datetime import date
-from database import Database
-from prediction_algorithm import *
+from useful_classes.prediction_algorithm import *
 class My_account_screen():
     def __init__(self, app):
         self.app = app

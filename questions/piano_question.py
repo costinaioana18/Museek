@@ -1,7 +1,7 @@
 import pygame, sys
-from choise_question import Choice_Question
-from read_question import Read_Question
-from listen_question import Listen_Question
+from questions.choise_question import Choice_Question
+from questions.read_question import Read_Question
+from questions.listen_question import Listen_Question
 
 class Piano_Question():
     def __init__(self, app,question_no,type):

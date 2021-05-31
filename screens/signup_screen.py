@@ -1,10 +1,9 @@
 import pygame,sys
 from pygame.locals import *
-from menu_screen import Menu_screen
-from inputBox import InputBox
-from database import Database
+from screens.menu_screen import Menu_screen
+from useful_classes.inputBox import InputBox
 from datetime import date
-from encryption import *
+from useful_classes.encryption import *
 
 class Signup_screen():
     def __init__(self, app):

@@ -1,7 +1,7 @@
 import pygame, sys
 from pygame.locals import *
-from piano_sound import Piano_sound
-from chord_question import *
+from useful_classes.piano_sound import Piano_sound
+from questions.chord_question import *
 
 class Piano_chords_screen():
     def __init__(self, app):

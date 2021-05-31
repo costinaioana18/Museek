@@ -1,6 +1,6 @@
 import pygame, sys
 from pygame.locals import *
-from piano_sound import Piano_sound
+from useful_classes.piano_sound import Piano_sound
 
 
 class Piano_notes_screen():

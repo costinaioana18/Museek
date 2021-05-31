@@ -1,8 +1,6 @@
 
 
 import pygame, sys
-from pygame.locals import *
-from database import Database
 class Choice_Question():
     def __init__(self, app,question_no):
         self.checked=0

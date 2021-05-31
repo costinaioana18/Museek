@@ -1,18 +1,16 @@
 import pygame, sys
 from pygame.locals import *
-from piano_screen import Piano_screen
-from guitar_screen import Guitar_screen
-from general_kno_screen import General_kno_screen
-from recommended_screen import Recommended_screen
-from my_account_screen import My_account_screen
-from piano_chords_screen import Piano_chords_screen
+from screens.piano_screen import Piano_screen
+from screens.general_kno_screen import General_kno_screen
+from screens.recommended_screen import Recommended_screen
+from screens.my_account_screen import My_account_screen
+from screens.piano_chords_screen import Piano_chords_screen
 
 class Menu_screen():
     def __init__(self, app):
         self.app = app
         self.click= False
         self.piano_screen = Piano_screen(self.app)
-        self.guitar_screen = Guitar_screen(self.app)
         self.chords_screen=Piano_chords_screen(self.app)
         self.general_kno_screen = General_kno_screen(self.app)
         self.recommended_screen = Recommended_screen(self.app)

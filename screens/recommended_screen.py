@@ -1,6 +1,6 @@
 import pygame, sys
 from pygame.locals import *
-from prediction_algorithm import *
+from useful_classes.prediction_algorithm import *
 
 
 class Recommended_screen():

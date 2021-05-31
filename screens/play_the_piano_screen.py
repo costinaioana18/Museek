@@ -1,7 +1,7 @@
 import pygame, sys
 from pygame.locals import *
-from piano_sound import Piano_sound
-from hands_free import *
+from useful_classes.piano_sound import Piano_sound
+from useful_classes.hands_free import *
 
 class Play_the_piano_screen():
     def __init__(self, app):

@@ -1,8 +1,8 @@
 import pygame, sys
 from pygame.locals import *
-from choise_question import Choice_Question
-from piano_tutorial_screen import Piano_tutorial_screen
-from piano_question import Piano_Question
+from questions.choise_question import Choice_Question
+from screens.piano_tutorial_screen import Piano_tutorial_screen
+from questions.piano_question import Piano_Question
 import random
 
 

@@ -1,8 +1,8 @@
 import pygame,sys
 from pygame.locals import *
-from login_screen import Login_screen
-from signup_screen import Signup_screen
-from database import *
+from screens.login_screen import Login_screen
+from screens.signup_screen import Signup_screen
+from useful_classes.database import *
 
 class StartUp():
     def __init__(self):

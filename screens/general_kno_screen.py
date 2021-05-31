@@ -1,6 +1,6 @@
 import pygame, sys
 from pygame.locals import *
-from gen_kno_question import Gen_Kno_Question
+from questions.gen_kno_question import Gen_Kno_Question
 
 class General_kno_screen():
     def __init__(self, app):

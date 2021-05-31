@@ -1,7 +1,7 @@
 import pygame, sys
 from pygame.locals import *
-from piano_notes_screen import Piano_notes_screen
-from play_the_piano_screen import Play_the_piano_screen
+from screens.piano_notes_screen import Piano_notes_screen
+from screens.play_the_piano_screen import Play_the_piano_screen
 
 
 class Piano_tutorial_screen():
