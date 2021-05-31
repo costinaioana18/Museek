@@ -5,6 +5,7 @@ from guitar_screen import Guitar_screen
 from general_kno_screen import General_kno_screen
 from recommended_screen import Recommended_screen
 from my_account_screen import My_account_screen
+from piano_chords_screen import Piano_chords_screen
 
 class Menu_screen():
     def __init__(self, app):
@@ -12,6 +13,7 @@ class Menu_screen():
         self.click= False
         self.piano_screen = Piano_screen(self.app)
         self.guitar_screen = Guitar_screen(self.app)
+        self.chords_screen=Piano_chords_screen(self.app)
         self.general_kno_screen = General_kno_screen(self.app)
         self.recommended_screen = Recommended_screen(self.app)
         self.my_account_screen = My_account_screen(self.app)
@@ -51,7 +53,7 @@ class Menu_screen():
                     self.piano_screen.piano()
             if guitar_button.collidepoint((mx, my)):
                 if click:
-                    self.guitar_screen.guitar()
+                    self.chords_screen.play_the_piano()
             if recommended_button.collidepoint((mx, my)):
                 if click:
                     self.recommended_screen.recommended()
@@ -62,6 +64,7 @@ class Menu_screen():
                 if click:
                     self.my_account_screen.get_progress()
                     self.my_account_screen.graduation_expect()
+                    self.my_account_screen.chord_graduation_expect()
                     print("here")
                     self.my_account_screen.my_account()
 

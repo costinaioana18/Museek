@@ -82,7 +82,7 @@ class Read_Question():
             self.database_handler.database_init("users_progress")
             self.mycol = self.database_handler.set_collection(self.app.current_user)
             self.database_handler.insert(
-                {"piano_c": 0, "piano_l": 0, "piano_r": 1, "gen_c": 0, "gen_r": 0,
+                {"piano_c": 0, "piano_l": 0, "piano_r": 1, "gen_c": 0, "chords": 0,
                  "topic": self.right_ans, "result": 1})
         else:
             self.checked=-1
@@ -91,7 +91,7 @@ class Read_Question():
             self.database_handler.database_init("users_progress")
             self.mycol = self.database_handler.set_collection(self.app.current_user)
             self.database_handler.insert(
-                {"piano_c": 0, "piano_l": 0, "piano_r": 1, "gen_c": 0, "gen_r": 0,
+                {"piano_c": 0, "piano_l": 0, "piano_r": 1, "gen_c": 0, "chords": 0,
                  "topic": self.right_ans, "result": 0})
 
     def set_random(self):
@@ -106,6 +106,8 @@ class Read_Question():
     def display(self):
         self.app.draw_text(self.question, self.font, (255, 255, 255), self.app.screen, 250, 50)
         self.app.screen.blit(self.note_icon1, (250, 250))
+
+
 
 
 

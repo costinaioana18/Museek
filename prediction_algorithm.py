@@ -14,7 +14,7 @@ class Prediction_Algorithm:
         vectorX=[]
         vectorY=[]
         for instance in a:
-            vectorX.append([instance["piano_c"],instance["piano_l"],instance["piano_r"],instance["gen_c"],instance["gen_r"],instance["topic"]])
+            vectorX.append([instance["piano_c"],instance["piano_l"],instance["piano_r"],instance["gen_c"],instance["chords"],instance["topic"]])
             vectorY.append(instance["result"])
         #print(vectorX)
         #print(vectorY)

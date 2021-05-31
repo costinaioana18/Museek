@@ -74,7 +74,7 @@ class Choice_Question():
             self.database_handler.database_init("users_progress")
             self.mycol = self.database_handler.set_collection(self.app.current_user)
             self.database_handler.insert(
-                {"piano_c": 1,  "piano_l": 0,  "piano_r": 0, "gen_c": 0,  "gen_r": 0,
+                {"piano_c": 1,  "piano_l": 0,  "piano_r": 0, "gen_c": 0,  "chords": 0,
                  "topic": self.topic, "result": 1})
 
         else:
@@ -83,7 +83,7 @@ class Choice_Question():
             self.database_handler.database_init("users_progress")
             self.mycol = self.database_handler.set_collection(self.app.current_user)
             self.database_handler.insert(
-                {"piano_c": 1, "piano_l": 0, "piano_r": 0, "gen_c": 0, "gen_r": 0,
+                {"piano_c": 1, "piano_l": 0, "piano_r": 0, "gen_c": 0, "chords": 0,
                  "topic": self.topic, "result": 0})
 
 

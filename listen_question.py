@@ -77,7 +77,7 @@ class Listen_Question():
             self.database_handler.database_init("users_progress")
             self.mycol = self.database_handler.set_collection(self.app.current_user)
             self.database_handler.insert(
-                {"piano_c": 0, "piano_l": 1, "piano_r": 0, "gen_c": 0, "gen_r": 0,
+                {"piano_c": 0, "piano_l": 1, "piano_r": 0, "gen_c": 0, "chords": 0,
                  "topic": self.right_ans, "result": 1})
         else:
             self.checked=-1
@@ -86,7 +86,7 @@ class Listen_Question():
             self.database_handler.database_init("users_progress")
             self.mycol = self.database_handler.set_collection(self.app.current_user)
             self.database_handler.insert(
-                {"piano_c": 0, "piano_l": 1, "piano_r": 0, "gen_c": 0, "gen_r": 0,
+                {"piano_c": 0, "piano_l": 1, "piano_r": 0, "gen_c": 0, "chords": 0,
                  "topic": self.right_ans, "result": 0})
 
     def set_random(self):
