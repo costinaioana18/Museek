@@ -13,7 +13,7 @@ class StartUp():
         self.database_handler = Database(
             "mongodb+srv://test:test@cluster0.6borp.mongodb.net/test?retryWrites=true&w=majority")
         self.current_user=None
-        self.font = pygame.font.SysFont('simsunnsimsun', 32)
+        self.font = pygame.font.SysFont('inkfree', 32)
         self.click=False
         self.login_screen=Login_screen(self)
         self.signup_screen = Signup_screen(self)

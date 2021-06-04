@@ -1,5 +1,6 @@
 import random
 from useful_classes.database import *
+from useful_classes.piano_sound import Piano_sound
 import pygame
 
 
@@ -9,18 +10,19 @@ class Chord_Question():
         self.outcome=None
         self.checked=0
         self.app=app
-        self.question="Play chord C major"
+        self.question="Play chord C minor"
         self.notex_title_list = ['C', 'C#', 'D', 'Eb', 'E', 'F', 'F#', 'G',
                                  'Ab', 'A', 'Bb', 'B']
-        self.chords_name=["C major", "D major", "E major","F major","G major","A major","B major"]
+        self.chords_name=["C minor", "D minor", "E minor","F minor","G minor","A minor","B minor"]
         self.chords=[[0,3,7],[2,5,9],[4,7,11],[5,8,0],[7,10,2],[9,0,4],[11,2,6]]
-        self.chords_sounds=["Cm.mp3","Dm.mp3","Em.mp3","Fm.mp3","Gm.mp3","Am.mp3","Bm.mp3"]
+        self.chords_sounds=["sounds/Chord-cm.wav","sounds/Chord-dm.wav","sounds/Chord-em.wav","sounds/Chord-fm.wav","sounds/Chord-em.wav","sounds/Chord-am.wav","sounds/Chord-bm.wav"]
         self.sound=self.chords_sounds[0]
         self.topic=[0,2,4,5,7,9,11]
         self.answer=0
         self.current_answer=[-1,-1,-1]
         self.right_answer=[0,3,7]
         self.current_position=-1
+        self.soundd = Piano_sound("sounds/piano-c.wav")
 
     def set_random(self):
         i=self.answer
@@ -39,13 +41,21 @@ class Chord_Question():
         self.sound=self.chords_sounds[self.answer]
         self.checked=0
 
+    def play_chord(self):
+        self.soundd.set_note(self.chords_sounds[self.answer])
+        self.soundd.play()
+
     def receive_answer(self,i):
         if(self.current_position==-1):
             self.current_position=0
-        if (self.current_position == 2):
+        if (self.current_position == 2 and self.current_answer[2]==-1):
             self.current_answer[self.current_position] = i
-            self.check_answer()
-        else:
+            # for i in range(0, 3):
+            #     self.app.draw_text(self.notex_title_list[self.current_answer[i]], self.app.font, (255, 255, 255),
+            #                        self.app.screen, 300 + i * 50, 100)
+
+            #self.check_answer()
+        elif self.current_position<=1:
             self.current_answer[self.current_position]=i
             self.current_position+=1
         print(self.current_answer)
@@ -56,8 +66,13 @@ class Chord_Question():
                 return -1
         return 1
 
-    def check_answer(self):
+    def redo(self):
+        self.current_position = -1
+        self.current_answer = [-1, -1, -1]
+        self.checked = 0
 
+    def check_answer(self):
+        print("check")
         self.current_position=0
         correct=self.is_correct()
         if correct==1:
@@ -96,11 +111,16 @@ class Chord_Question():
 
 
     def display(self):
-        self.app.draw_text(self.question, self.app.font, (255, 255, 255), self.app.screen, 250, 50)
+        self.app.draw_text(self.question, self.app.font, (255, 255, 255), self.app.screen, 310, 50)
         if(self.checked==1):
             self.app.draw_text(self.outcome, self.app.font, (255, 255, 255), self.app.screen, 250, 150)
             for i in range(0,3):
                 self.app.draw_text(self.notex_title_list[self.current_answer[i]], self.app.font, (255, 255, 255), self.app.screen, 300+i*50, 100)
+
+        for i in range(0, 3):
+            if self.current_answer[i]!=-1:
+                self.app.draw_text(self.notex_title_list[self.current_answer[i]], self.app.font, (255, 255, 255),
+                               self.app.screen, 300 + i * 50, 100)
 
         if(self.current_position!=-1):
             for i in range(0,self.current_position):

@@ -33,12 +33,12 @@ class Piano_tutorial_screen():
             #self.app.draw_text('piano tutorial screen', self.app.font, (255, 255, 255), self.app.screen, 20, 20)
             mx, my = pygame.mouse.get_pos()
             if notes_button.collidepoint((mx, my)):
-                self.app.draw_text('step by step manual', self.app.font, (255, 255, 255), self.app.screen, 400, 490)
+                self.app.draw_text("beginner's manual", self.app.font, (255, 255, 255), self.app.screen, 460, 470)
                 if click:
                     print("piano_notes")
                     self.piano_notes_screen.piano_notes()
             if play_piano_button.collidepoint((mx, my)):
-                self.app.draw_text('play the piano', self.app.font, (255, 255, 255), self.app.screen, 200, 490)
+                self.app.draw_text('play the piano', self.app.font, (255, 255, 255), self.app.screen, 200, 470)
                 if click:
                     print("piano_play")
                     self.piano_play_screen.play_the_piano()

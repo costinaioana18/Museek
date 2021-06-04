@@ -27,7 +27,7 @@ class Play_the_piano_screen():
         self.voice_notes=("play note c","play note c charp","play note d","play note e flat","play note e","play note f","play note fd","play note g","play note g diez","play note a","play note b flat","play note b")
         self.sounds_list = ["sounds/piano-c.wav", "sounds/piano-cd.wav", "sounds/piano-d.wav", "sounds/piano-eb.wav",
                             "sounds/piano-e.wav", "sounds/piano-f.wav", "sounds/piano-fd.wav", "sounds/piano-g.wav",
-                            "sounds/piano-gd.wav", "sounds/piano-a.wav", "sounds/piano-bb.wav", "sounds/piano-b.wav"]
+                            "sounds/piano-ab.wav", "sounds/piano-a.wav", "sounds/piano-bb.wav", "sounds/piano-b.wav"]
         self.button_coordinates_list = [(450, 200, 30, 200), (466, 200, 18, 122), (484, 200, 18, 200),
                                         (501, 200, 18, 122), (518, 200, 30, 200), (534, 200, 30, 200),
                                         (550, 200, 18, 122), (567, 200, 18, 200), (582, 200, 18, 122),
@@ -89,7 +89,7 @@ class Play_the_piano_screen():
                 if(selected>-1):
                     self.text_audio="...playing "+ notes[selected]
                 else:
-                    self.text.audio="I'm sorry, I didn't understand that"
+                    self.text_audio="I'm sorry, I didn't understand that"
                 return selected
         return -1
 
@@ -148,12 +148,12 @@ class Play_the_piano_screen():
                         # self.login_screen.login()
                         if (playing):
                             print(i)
-                            self.piano_sound.set_note(self.sounds_list[i%6])
+                            self.piano_sound.set_note(self.sounds_list[i%12])
                             #self.note_icon1=pygame.image.load(self.notes_icon_list[i])
                             self.piano_sound.play()
                             playing = False
                         else:
-                            self.piano_sound.set_note(self.sounds_list[i%6])
+                            self.piano_sound.set_note(self.sounds_list[i%12])
                             #self.note_icon1 = pygame.image.load(self.notes_icon_list[i])
                             self.piano_sound.play()
                             playing = True

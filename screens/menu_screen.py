@@ -5,6 +5,7 @@ from screens.general_kno_screen import General_kno_screen
 from screens.recommended_screen import Recommended_screen
 from screens.my_account_screen import My_account_screen
 from screens.piano_chords_screen import Piano_chords_screen
+from screens.feedback_screen import Feedback_screen
 
 class Menu_screen():
     def __init__(self, app):
@@ -20,6 +21,7 @@ class Menu_screen():
         self.recommended_icon = pygame.image.load('icons/recommended.jpg')
         self.general_kno_icon = pygame.image.load('icons/general_kno.jpg')
         self.my_account_icon = pygame.image.load('icons/my_account.jpg')
+        self.feedback_screen=Feedback_screen(self.app)
 
     def menu(self):
         running = True
@@ -45,6 +47,7 @@ class Menu_screen():
             recommended_button = pygame.Rect(250, 350, 400, 50)
             general_kno_button = pygame.Rect(250, 450, 400, 50)
             my_account_button = pygame.Rect(400, 525, 100, 25)
+            feedback_button=pygame.Rect(400, 575, 100, 25)
 
             if piano_button.collidepoint((mx, my)):
                 if click:
@@ -65,6 +68,10 @@ class Menu_screen():
                     self.my_account_screen.chord_graduation_expect()
                     print("here")
                     self.my_account_screen.my_account()
+            if feedback_button.collidepoint((mx, my)):
+                if click:
+                    self.feedback_screen.get_from_database()
+                    self.feedback_screen.feedback_screen()
 
 
             self.app.screen.blit(self.piano_icon, (250, 150))
@@ -72,6 +79,7 @@ class Menu_screen():
             self.app.screen.blit(self.recommended_icon, (250, 350))
             self.app.screen.blit(self.general_kno_icon, (250, 450))
             self.app.screen.blit(self.my_account_icon, (400, 525))
+            self.app.screen.blit(self.my_account_icon, (400, 575))
             self.app.screen.blit(self.app.bg, (20, 50))
             self.app.screen.blit(self.app.bg1, (700, 50))
             # pygame.draw.rect(self.app.screen, (255, 162, 193), piano_button)

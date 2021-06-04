@@ -19,7 +19,7 @@ class Piano_notes_screen():
         self.click= False
         self.count=0
         self.piano_sound=Piano_sound("sounds/piano-c.wav")
-        self.font = pygame.font.SysFont('simsunnsimsun', 32)
+        self.font = pygame.font.SysFont('inkfree', 32)
         self.note_icon1=pygame.image.load('icons/piano_notes/do.jpg')
         self.note_icon2=pygame.image.load('icons/piano_notes/do1.jpg')
         self.note_title="C (Do)"
@@ -81,6 +81,7 @@ class Piano_notes_screen():
                 print(mx)
                 print(my)
             if  self.next_button.collidepoint((mx, my)):
+                self.app.draw_text("next note", self.app.font, (255, 255, 255), self.app.screen, 397, 500)
                 if click:
                     self.next_note()
 

@@ -3,11 +3,13 @@ from pygame.locals import *
 from screens.menu_screen import Menu_screen
 from useful_classes.inputBox import InputBox
 from useful_classes.encryption import *
+from screens.forgot_password import *
 
 class Login_screen():
     def __init__(self, app):
         self.app=app
         self.menu_screen = Menu_screen(self.app)
+        self.forgot_password_screen = Forgot_password_screen(self.app)
         self.click = False
         self.icon = pygame.image.load('icons/login.jpg')
         self.play_icon = pygame.image.load('icons/play.jpg')
@@ -18,6 +20,8 @@ class Login_screen():
         self.mycol = self.database_handler.set_collection("users")
         self.complete_fields = 0
         self.succes=None
+        self.my_account_icon = pygame.image.load('icons/my_account.jpg')
+        self.my_account_button = pygame.Rect(370, 525, 159, 25)
 
     def database_check(self):
         print("hai verilor")
@@ -84,6 +88,10 @@ class Login_screen():
                     self.database_check()
                     if(self.succes==1):
                         self.menu_screen.menu()
+
+            if self.my_account_button.collidepoint((mx, my)):
+                if click:
+                        self.forgot_password_screen.forgot_password()
             self.app.screen.blit(self.icon, (250, 20))
             self.app.screen.blit(self.play_icon, (250, 450))
             for box in input_boxes:
@@ -91,6 +99,19 @@ class Login_screen():
 
             self.app.screen.blit(self.app.bg, (20, 50))
             self.app.screen.blit(self.app.bg1, (700, 50))
+
+            if self.my_account_button.collidepoint((mx,my)):
+                self.app.draw_text('Forgot your password?', pygame.font.SysFont('inkfree', 16,bold=True), self.app.color,
+                                   self.app.screen, 370,
+                                   525)
+            else:
+                self.app.draw_text('Forgot your password?', pygame.font.SysFont('inkfree', 16), self.app.color, self.app.screen, 370,
+                               525)
+            #self.app.screen.blit(self.my_account_icon, (400, 525))
             pygame.display.flip()
+
+            if click:
+                print(mx)
+                print(my)
 
             pygame.display.update()

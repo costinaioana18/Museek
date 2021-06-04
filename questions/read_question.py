@@ -34,7 +34,7 @@ class Read_Question():
                                 'icons/piano_notes/si.jpg']
 
         self.piano_icon='icons/pianoo.jpg'
-        self.font=pygame.font.SysFont('simsunnsimsun', 32)
+        self.font=pygame.font.SysFont('inkfree', 32)
         self.a_buttons = []
         self.buttons_coord = [(450, 324, 30, 200), (466, 200, 18, 122), (484, 324, 30, 200),
                                         (501, 200, 18, 122), (518, 324, 30, 200), (534, 324, 30, 200),

@@ -16,6 +16,7 @@ class Piano_screen():
         self.piano_tutorial_screen=Piano_tutorial_screen(self.app)
         self.count=0
         self.started=0
+        self.next_submit_icon=pygame.image.load('icons/play.jpg')
 
 
 
@@ -41,7 +42,7 @@ class Piano_screen():
 
             mx, my = pygame.mouse.get_pos()
             if piano_button.collidepoint((mx, my)):
-                self.app.draw_text('get help', self.app.font, (255, 255, 255), self.app.screen, 725, 140)
+                self.app.draw_text('explore & learn', self.app.font, (255, 255, 255), self.app.screen, 500, 40)
                 if click:
                     print("piano_tutorial")
                     self.piano_tutorial_screen.piano_tutorial()
@@ -59,6 +60,7 @@ class Piano_screen():
                     if(self.started==0):
                         self.checked=1
                     self.started = 1
+                    self.next_submit_icon = pygame.image.load('icons/submit_btn.jpg')
                     if self.checked==1:
                         n=self.count%3
                         if(n==1):
@@ -73,17 +75,30 @@ class Piano_screen():
                     else:
                         self.q.check_answer()
                         self.checked=1
+                        self.next_submit_icon = pygame.image.load('icons/play.jpg')
             else:
                 if click:
                     received=self.q.receive_answer(mx, my)
 
 
-            pygame.draw.rect(self.app.screen, (255, 162, 193), next_button)
+            #pygame.draw.rect(self.app.screen, (255, 162, 193), next_button)
+            self.app.screen.blit(self.next_submit_icon, (250, 450))
             self.app.screen.blit(self.app.bg, (20, 50))
             self.app.screen.blit(self.app.bg1, (700, 50))
             self.app.screen.blit(self.tutorial_icon, (775, 25))
             self.q.display()
+            x=60
+            y=40
             if(self.started==0):
-                self.app.draw_text('Press the button to start the test', self.app.font, (255, 255, 255), self.app.screen, 120, 120)
+                self.app.draw_text("Press 'continue' to start the test", self.app.font, (255, 255, 255), self.app.screen, 150+x, 120+y)
+                self.app.draw_text(
+                    "Press the hint icon to explore",
+                    self.app.font, (255, 255, 255), self.app.screen, 150+x, 160+y)
+                self.app.draw_text(
+                    "the piano's simulator ",
+                    self.app.font, (255, 255, 255), self.app.screen, 326+x, 200+y)
+                self.app.draw_text(
+                    "& the beginner's manual",
+                    self.app.font, (255, 255, 255), self.app.screen, 280+x, 240+y)
 
             pygame.display.update()

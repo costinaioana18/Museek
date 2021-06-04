@@ -5,7 +5,7 @@ class InputBox:
         self.rect = pg.Rect(x, y, w, h)
         self.COLOR_INACTIVE = pg.Color((177, 114, 97))
         self.COLOR_ACTIVE = pg.Color((255, 162, 193))
-        self.FONT = pg.font.Font(None, 32)
+        self.FONT = pg.font.SysFont('inkfree', 32)
         self.color = self.COLOR_INACTIVE
         self.text = text
         self.default_text= text
@@ -14,6 +14,7 @@ class InputBox:
         self.active = False
 
     def handle_event(self, event,protected=False):
+
         if event.type == pg.MOUSEBUTTONDOWN:
             # If the user clicked on the input_box rect.
             if self.rect.collidepoint(event.pos):
@@ -45,13 +46,16 @@ class InputBox:
                 else:
                     self.txt_surface = self.FONT.render(self.text, True, self.color)
 
+    def set_text(self,text):
+        self.text=text
+
     def update(self):
         # Resize the box if the text is too long.
         width = max(400, self.txt_surface.get_width()+10)
         self.rect.w = width
 
-    def draw(self, screen):
+    def draw(self, screen,d=0):
         # Blit the text.
-        screen.blit(self.txt_surface, (self.rect.x+155, self.rect.y+16))
+        screen.blit(self.txt_surface, (self.rect.x+155+d, self.rect.y+10))
         # Blit the rect.
         pg.draw.rect(screen, self.color, self.rect, 2)

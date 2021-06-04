@@ -13,7 +13,7 @@ class Choice_Question():
         self.question=""
         self.answers=["","","",""]
         self.right_ans=-2
-        self.font=pygame.font.SysFont('simsunnsimsun', 32)
+        self.font=pygame.font.SysFont('inkfree', 32)
         self.database_handler = self.app.database_handler
         self.database_handler.database_init("questions")
         self.mycol = self.database_handler.set_collection("piano_questions")
