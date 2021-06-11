@@ -43,9 +43,26 @@ class Piano_tutorial_screen():
                     print("piano_play")
                     self.piano_play_screen.play_the_piano()
 
+
+            x=60
+            y=50
+            self.app.draw_text("Play our game today...", self.app.font, (255, 255, 255), self.app.screen,
+                               135 + x, 120 + y)
+            self.app.draw_text(
+                "...to play the piano tomorrow",
+                self.app.font, (255, 255, 255), self.app.screen, 244 + x, 160 + y)
+            self.app.draw_text(
+                "Do you need help?",
+                self.app.font, (255, 255, 255), self.app.screen, 326-60 + x, 250 + y)
+            self.app.draw_text(
+                "Do you need to practice?",
+                self.app.font, (255, 255, 255), self.app.screen, 280-60 + x, 300 + y)
+
             self.app.screen.blit(self.notes_icon, (550, 525))
             self.app.screen.blit(self.play_icon, (250, 525))
             self.app.screen.blit(self.app.bg, (20, 50))
             self.app.screen.blit(self.app.bg1, (700, 50))
+
+            self.app.screen.blit(self.app.logo, (250, 20))
 
             pygame.display.update()

@@ -103,7 +103,7 @@ class Forgot_password_screen():
 
 
             username_input.draw(self.app.screen)
-            password_input.draw(self.app.screen,-100)
+            password_input.draw(self.app.screen)
 
             if next_button.collidepoint((mx,my)):
                 if click:

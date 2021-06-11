@@ -137,7 +137,7 @@ class Signup_screen():
                         self.menu_screen.menu()
             self.app.screen.blit(self.icon, (250, 20))
             self.app.screen.blit(self.play_icon, (250, 450))
-            nickname_input.draw(self.app.screen,-100)
+            nickname_input.draw(self.app.screen)
             for box in input_boxes:
                 if box!=nickname_input:
                     box.draw(self.app.screen)

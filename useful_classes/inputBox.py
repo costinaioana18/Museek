@@ -12,6 +12,7 @@ class InputBox:
         self.txt_surface = self.FONT.render(text, True, self.color)
         self.protected_text=''
         self.active = False
+        self.length=len(text)
 
     def handle_event(self, event,protected=False):
 
@@ -45,7 +46,7 @@ class InputBox:
                     self.txt_surface = self.FONT.render(self.protected_text, True, self.color)
                 else:
                     self.txt_surface = self.FONT.render(self.text, True, self.color)
-
+                self.length=len(self.text)
     def set_text(self,text):
         self.text=text
 
@@ -54,8 +55,8 @@ class InputBox:
         width = max(400, self.txt_surface.get_width()+10)
         self.rect.w = width
 
-    def draw(self, screen,d=0):
+    def draw(self, screen):
         # Blit the text.
-        screen.blit(self.txt_surface, (self.rect.x+155+d, self.rect.y+10))
-        # Blit the rect.
+        print(self.length)
+        screen.blit(self.txt_surface, (self.rect.x+self.rect.w/2-self.length*6, self.rect.y+10))
         pg.draw.rect(screen, self.color, self.rect, 2)

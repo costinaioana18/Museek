@@ -64,7 +64,13 @@ class Feedback_screen():
         self.database_handler.database_init("feedback")
         self.mycol = self.database_handler.set_collection("feedbacks")
         feedbacks = self.mycol.find()
-        self.feedbacks[0]=feedbacks[0]["feedback"]
+        m=self.mycol.find()
+        cn=0
+        for c in m:
+            cn+=1
+        self.feedbacks[0] = feedbacks[cn-3]["feedback"]
+        self.feedbacks[1]=feedbacks[cn-2]["feedback"]
+        self.feedbacks[2] = feedbacks[cn-1]["feedback"]
         self.get_rating_fromdb()
 
 
@@ -113,6 +119,7 @@ class Feedback_screen():
                     print("click")
                     self.database_check()
                     username_input = InputBox(250, 475, 400, 50, "feedback")
+                    self.get_from_database()
                     if(self.succes==1):
                         pass
                         #self.menu_screen.menu()
@@ -146,7 +153,7 @@ class Feedback_screen():
 
             for i in range(3):
                 self.app.draw_text('"'+self.feedbacks[i]+'"', self.app.font, (255, 255, 255), self.app.screen, 200,
-                                   200+50*i)
+                                   225+50*i)
 
             x = 350
             y = 50

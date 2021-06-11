@@ -23,6 +23,8 @@ class StartUp():
         self.bg1 = pygame.image.load('icons/art_flipped.jpg')
         self.signup_btn = pygame.image.load('icons/signup_btn.jpg')
         self.login_btn = pygame.image.load('icons/login_btn.jpg')
+        program_Icon = pygame.image.load('icons/prgic.png')
+        pygame.display.set_icon(program_Icon)
 
     def set_user(self,username):
         self.current_user=username

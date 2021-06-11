@@ -87,6 +87,7 @@ class Login_screen():
                 if click and self.complete_fields:
                     self.database_check()
                     if(self.succes==1):
+                        self.menu_screen.get_user_score()
                         self.menu_screen.menu()
 
             if self.my_account_button.collidepoint((mx, my)):
