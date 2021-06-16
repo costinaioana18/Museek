@@ -76,7 +76,7 @@ class Chord_Question():
         self.current_position=0
         correct=self.is_correct()
         if correct==1:
-            self.outcome="congratulations"
+            self.outcome="Congratulations. You made it!"
             self.database_handler.database_init("users")
             self.mycol = self.database_handler.set_collection("users_data")
             self.database_handler.increment_database("username", self.app.current_user, "chords_s", 1)
@@ -89,7 +89,7 @@ class Chord_Question():
                  "topic": self.topic[self.answer], "result": 1})
 
         else:
-            self.outcome="wrong"
+            self.outcome="That's wrong... but play it cool!"
             self.database_handler.database_init("users")
             self.mycol = self.database_handler.set_collection("users_data")
             self.database_handler.increment_database("username", self.app.current_user, "chords_f", 1)
@@ -113,7 +113,7 @@ class Chord_Question():
     def display(self):
         self.app.draw_text(self.question, self.app.font, (255, 255, 255), self.app.screen, 310, 50)
         if(self.checked==1):
-            self.app.draw_text(self.outcome, self.app.font, (255, 255, 255), self.app.screen, 250, 150)
+            self.app.draw_text(self.outcome, self.app.font, (255, 255, 255), self.app.screen, 225, 500)
             for i in range(0,3):
                 self.app.draw_text(self.notex_title_list[self.current_answer[i]], self.app.font, (255, 255, 255), self.app.screen, 300+i*50, 100)
 
