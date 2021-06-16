@@ -4,7 +4,7 @@ def split_blocks(message):
 def XoR(t1, t2):
     return bytes([_a ^ _b for _a, _b in zip(t1, t2)])
 
-def CFBencode(plain_text, key, initVector):
+def CBCencode(plain_text, key, initVector):
     whole_cypher_text = b''
     plain_blocks = split_blocks(plain_text)
     for plain_block in plain_blocks:
@@ -17,8 +17,8 @@ def CFBencode(plain_text, key, initVector):
     return whole_cypher_text
 
 
-# CFB decoding algorithm
-def CFBdecode(whole_cypher_text, key, initVector):
+# CBC decoding algorithm
+def CBCdecode(whole_cypher_text, key, initVector):
     wholePlainText = ''
     whole_cypher_text = split_blocks(whole_cypher_text)
     for cipher in whole_cypher_text:
@@ -30,8 +30,8 @@ def CFBdecode(whole_cypher_text, key, initVector):
 
 
 def encrypt(text):
-    return CFBencode(text, b'1234567890123456', b'ddddcccc11118888')
+    return CBCencode(text, b'1234567890123456', b'ddddcccc11118888')
 
 
 def decrypt(text):
-    return CFBdecode(text, b'1234567890123456', b'ddddcccc11118888')
+    return CBCdecode(text, b'1234567890123456', b'ddddcccc11118888')
