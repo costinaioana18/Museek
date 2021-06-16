@@ -8,6 +8,8 @@ class Play_the_piano_screen():
         self.text_audio=None
         self.app = app
         self.click= False
+        self.point_x=0
+        self.point_y=0
         self.mic_icon=pygame.image.load('icons/mic_on.jpg')
         self.mic_icon_off=pygame.image.load('icons/mic_off.jpg')
         self.note_icon1 = pygame.image.load('icons/pianoFUL.jpg')
@@ -137,13 +139,17 @@ class Play_the_piano_screen():
                 self.app.screen.blit(self.mic_icon, (0, 0))
             #self.mic_icon = pygame.image.load('icons/mic_on.jpg')
 
-
+            yes=-5
             if click:
-
+                yes = 0
                 print(str(mx) + ' ' + str(my))
             for i in range(36):
                 if self.buttons[i].collidepoint((mx, my)):
+
                     if click:
+                        yes = 1
+                        self.point_x = mx
+                        self.point_y = my
                         self.text_audio = None
                         # self.login_screen.login()
                         if (playing):
@@ -157,12 +163,15 @@ class Play_the_piano_screen():
                             #self.note_icon1 = pygame.image.load(self.notes_icon_list[i])
                             self.piano_sound.play()
                             playing = True
-
-
+            if yes==0:
+                self.point_x=0
             self.app.draw_text(self.text_audio, self.app.font, (255, 255, 255), self.app.screen, 120, 20)
 
             self.app.screen.blit(self.note_icon1, (100, 200))
 
+            self.app.screen.blit(pygame.image.load('icons/hand.png'), (mx - 25, my - 10))
 
+            if self.point_x:
+                self.app.screen.blit(pygame.image.load('icons/ball.png'), (self.point_x - 25, self.point_y - 10))
 
             pygame.display.update()

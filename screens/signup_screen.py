@@ -12,6 +12,7 @@ class Signup_screen():
         self.click = False
         self.icon = pygame.image.load('icons/signup.jpg')
         self.play_icon = pygame.image.load('icons/play.jpg')
+        self.play_icon_hov = pygame.image.load('icons/play_hov.jpg')
         self.u=None
         self.p=None
         self.n=None
@@ -130,13 +131,16 @@ class Signup_screen():
                     self.recovery_question=self.recovery_questions[self.recovery_index]
 
             if menu_button.collidepoint((mx, my)):
+                self.app.screen.blit(self.play_icon_hov, (250, 450))
                 if click and self.complete_fields:
                     print("insert")
                     self.insert_into_database(self.n, self.u, self.p)
                     if self.success:
                         self.menu_screen.menu()
+            else:
+                self.app.screen.blit(self.play_icon, (250, 450))
             self.app.screen.blit(self.icon, (250, 20))
-            self.app.screen.blit(self.play_icon, (250, 450))
+
             nickname_input.draw(self.app.screen)
             for box in input_boxes:
                 if box!=nickname_input:
@@ -148,8 +152,9 @@ class Signup_screen():
             self.app.screen.blit(back_next_icon, (210, 110))
             self.app.draw_text("recovery question: "+self.recovery_question, self.font, self.app.color, self.app.screen,
                                250,110)
+
+
+            self.app.screen.blit(pygame.image.load('icons/mouse.png'), (mx - 25, my - 25))
             pygame.display.flip()
-
-
-             #pygame.draw.rect(self.app.screen, (255, 162, 193), menu_button)
+            #pygame.draw.rect(self.app.screen, (255, 162, 193), menu_button)
             pygame.display.update()

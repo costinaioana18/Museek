@@ -100,5 +100,6 @@ class Recommended_screen():
             if(self.started==0):
                 self.app.draw_text("Press 'continue' to start the test", self.app.font, (255, 255, 255), self.app.screen, 150+x, 120+y)
 
+            self.app.screen.blit(pygame.image.load('icons/mouse.png'), (mx - 25, my - 25))
 
             pygame.display.update()

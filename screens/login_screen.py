@@ -13,6 +13,7 @@ class Login_screen():
         self.click = False
         self.icon = pygame.image.load('icons/login.jpg')
         self.play_icon = pygame.image.load('icons/play.jpg')
+        self.play_icon_hov = pygame.image.load('icons/play_hov.jpg')
         self.u = None
         self.p = None
         self.database_handler = self.app.database_handler
@@ -22,9 +23,11 @@ class Login_screen():
         self.succes=None
         self.my_account_icon = pygame.image.load('icons/my_account.jpg')
         self.my_account_button = pygame.Rect(370, 525, 159, 25)
+        self.clickky=0
 
     def database_check(self):
         print("hai verilor")
+        self.clickky = 0
         q=self.database_handler.exists("username",self.u)
         if q:
             password = self.database_handler.get("username",self.u,"password")
@@ -33,6 +36,7 @@ class Login_screen():
                 self.app.set_user(self.u)
             else:
                 self.succes=0
+
 
         else:
             self.succes = 0
@@ -78,23 +82,33 @@ class Login_screen():
             for box in input_boxes:
                 box.update()
 
+
+
             if (self.succes==0):
-                self.app.draw_text('Wrong username or password', self.app.font, (255, 255, 255), self.app.screen, 20,
-                                   500)
+                if(self.clickky==0):
+                    text = 'Wrong username or password'
+                if click:
+                    text = ' '
+                    self.clickky=1
+                self.app.draw_text(text, self.app.font, (255, 1, 1), self.app.screen, 250,
+                                   350)
             #self.app.draw_text('login', self.app.font, (255, 255, 255), self.app.screen, 20, 20)
             mx, my = pygame.mouse.get_pos()
             if menu_button.collidepoint((mx, my)):
+                self.app.screen.blit(self.play_icon_hov, (250, 450))
                 if click and self.complete_fields:
                     self.database_check()
                     if(self.succes==1):
                         self.menu_screen.get_user_score()
                         self.menu_screen.menu()
+            else:
+                self.app.screen.blit(self.play_icon, (250, 450))
 
             if self.my_account_button.collidepoint((mx, my)):
                 if click:
                         self.forgot_password_screen.forgot_password()
             self.app.screen.blit(self.icon, (250, 20))
-            self.app.screen.blit(self.play_icon, (250, 450))
+
             for box in input_boxes:
                 box.draw(self.app.screen)
 
@@ -108,11 +122,12 @@ class Login_screen():
             else:
                 self.app.draw_text('Forgot your password?', pygame.font.SysFont('inkfree', 16), self.app.color, self.app.screen, 370,
                                525)
-            #self.app.screen.blit(self.my_account_icon, (400, 525))
-            pygame.display.flip()
+
+
 
             if click:
                 print(mx)
                 print(my)
-
+            self.app.screen.blit(pygame.image.load('icons/mouse.png'), (mx - 25, my - 25))
+            pygame.display.flip()
             pygame.display.update()

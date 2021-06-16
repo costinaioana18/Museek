@@ -139,6 +139,8 @@ class Forgot_password_screen():
             self.app.screen.blit(self.app.bg1, (700, 50))
             self.app.screen.blit(next_icon, (660, 260))
             self.app.screen.blit(back_next_icon, (210, 260))
+            self.app.screen.blit(pygame.image.load('icons/mouse.png'), (mx - 25, my - 25))
+
             pygame.display.flip()
 
             pygame.display.update()

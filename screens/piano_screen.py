@@ -6,6 +6,7 @@ from questions.piano_question import Piano_Question
 import random
 
 
+
 class Piano_screen():
     def __init__(self, app):
         self.checked=0
@@ -16,9 +17,20 @@ class Piano_screen():
         self.piano_tutorial_screen=Piano_tutorial_screen(self.app)
         self.count=0
         self.started=0
+        self.case=0
         self.next_submit_icon=pygame.image.load('icons/play.jpg')
 
+    def hover_photo(self):
+        if self.case==1:
+            self.next_submit_icon = pygame.image.load('icons/submit_btn_hov.jpg')
+        else:
+            self.next_submit_icon = pygame.image.load('icons/play_hov.jpg')
 
+    def unhover_photo(self):
+        if self.case==1:
+            self.next_submit_icon = pygame.image.load('icons/submit_btn.jpg')
+        else:
+            self.next_submit_icon = pygame.image.load('icons/play.jpg')
 
     def piano(self):
 
@@ -55,12 +67,13 @@ class Piano_screen():
 
 
             if next_button.collidepoint((mx, my)):
-
+                self.hover_photo()
                 if click:
                     if(self.started==0):
                         self.checked=1
                     self.started = 1
                     self.next_submit_icon = pygame.image.load('icons/submit_btn.jpg')
+                    self.case=1
                     if self.checked==1:
                         n=self.count%3
                         if(n==1):
@@ -76,7 +89,9 @@ class Piano_screen():
                         self.q.check_answer()
                         self.checked=1
                         self.next_submit_icon = pygame.image.load('icons/play.jpg')
+                        self.case=0
             else:
+                self.unhover_photo()
                 if click:
                     received=self.q.receive_answer(mx, my)
 
@@ -100,5 +115,6 @@ class Piano_screen():
                 self.app.draw_text(
                     "& the beginner's manual",
                     self.app.font, (255, 255, 255), self.app.screen, 280+x, 240+y)
+            self.app.screen.blit(pygame.image.load('icons/mouse.png'), (mx - 25, my - 25))
 
             pygame.display.update()

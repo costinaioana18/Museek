@@ -170,9 +170,7 @@ class Feedback_screen():
                 for i in range(5):
                     self.app.screen.blit(self.rate1, (x + i * 35, y))
 
-
-
-
+            self.app.screen.blit(pygame.image.load('icons/mouse.png'), (mx - 25, my - 25))
             pygame.display.flip()
 
             pygame.display.update()

@@ -164,6 +164,8 @@ class My_account_screen():
 
             mean = self.get_mean(prob)  # aflam probabilitatea medie de a raspunde corect la o intrebare
             self.gn_days_left = int(left / float(frequency * mean))
+            print("GN")
+            print(self.gn_days_left)
             # aflam numarul de zile pana la finalizarea aplicatiei:
             # numarul de intrebari ramase impartit la
             # frecventa presiza/zi inmultita cu probabilitatea prezisa de a raspunde corect
@@ -187,13 +189,14 @@ class My_account_screen():
             self.app.draw_text('Graduation', self.app.font, self.app.color, self.app.screen, 630, 70)
             self.app.draw_text('my account', self.app.font, self.app.color, self.app.screen, 20, 20)
 
+
             p_progress = int(self.p_progress * 200 / self.total_piano)
             chord_progress = int(self.chords_progress * 200 / self.total_chords)
             gn_progress = int(self.gn_progress * 200 / self.total_gn)
 
             pygame.draw.rect(self.app.screen, self.app.color, pygame.Rect(300, 150, p_progress, 30))
-            pygame.draw.line(self.app.screen, (255, 162, 193), (350, 150),
-                             (350, 180))
+            pygame.draw.line(self.app.screen, (255, 162, 193), (350-8, 150),
+                             (350-8, 178))
             pygame.draw.rect(self.app.screen, (255, 162, 193), pygame.Rect(300, 150, 200, 30), 1)
             self.app.draw_text('Piano basics', self.app.font, self.app.color, self.app.screen, 100, 145)
             self.app.draw_text(str(self.p_days_left) + ' days', self.app.font, self.app.color, self.app.screen, 650,
@@ -210,5 +213,8 @@ class My_account_screen():
             self.app.draw_text('General', self.app.font, self.app.color, self.app.screen, 100, 345)
             self.app.draw_text(str(self.gn_days_left) + ' days', self.app.font, self.app.color, self.app.screen, 650,
                                345)
+
+            mx, my = pygame.mouse.get_pos()
+            self.app.screen.blit(pygame.image.load('icons/mouse.png'), (mx - 25, my - 25))
 
             pygame.display.update()

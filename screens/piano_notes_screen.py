@@ -92,5 +92,6 @@ class Piano_notes_screen():
             self.app.screen.blit(self.app.bg, (20, 50))
             self.app.screen.blit(self.app.bg1, (700, 50))
             #pygame.draw.rect(self.app.screen, (255, 162, 193), self.sound_play_button)
+            self.app.screen.blit(pygame.image.load('icons/mouse.png'), (mx - 25, my - 25))
 
             pygame.display.update()

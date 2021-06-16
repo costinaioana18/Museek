@@ -22,7 +22,9 @@ class StartUp():
         self.bg = pygame.image.load('icons/art.jpg')
         self.bg1 = pygame.image.load('icons/art_flipped.jpg')
         self.signup_btn = pygame.image.load('icons/signup_btn.jpg')
+        self.signup_btn_hov = pygame.image.load('icons/signup_btn_hov.jpg')
         self.login_btn = pygame.image.load('icons/login_btn.jpg')
+        self.login_btn_hov = pygame.image.load('icons/login_btn_hov.jpg')
         program_Icon = pygame.image.load('icons/prgic.png')
         pygame.display.set_icon(program_Icon)
 
@@ -55,21 +57,30 @@ class StartUp():
 
             mx, my = pygame.mouse.get_pos()
 
+
             button_1 = pygame.Rect(250, 150, 400, 50)
             button_2 = pygame.Rect(250, 250, 400, 50)
             if button_1.collidepoint((mx, my)):
+                self.screen.blit(self.login_btn_hov, (250, 150))
                 if click:
                     self.login_screen.login()
                     #self.signup_screen.signup()
+            else:
+                self.screen.blit(self.login_btn, (250, 150))
+
             if button_2.collidepoint((mx, my)):
+                self.screen.blit(self.signup_btn_hov, (250, 250))
                 if click:
                     self.signup_screen.signup()
+            else:
+                self.screen.blit(self.signup_btn, (250, 250))
             #pygame.draw.rect(self.screen, (255, 162, 193), button_1)
             #pygame.draw.rect(self.screen, (255, 162, 193), button_2)
-            self.screen.blit(self.login_btn, (250, 150))
-            self.screen.blit(self.signup_btn, (250, 250))
             self.screen.blit(self.logo, (250, 20))
             self.screen.blit(self.bg, (20, 50))
             self.screen.blit(self.bg1, (700, 50))
+
+
+            self.screen.blit(pygame.image.load('icons/mouse.png'), (mx - 25, my - 25))
             pygame.display.update()
             self.mainClock.tick(60)

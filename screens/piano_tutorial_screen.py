@@ -64,5 +64,6 @@ class Piano_tutorial_screen():
             self.app.screen.blit(self.app.bg1, (700, 50))
 
             self.app.screen.blit(self.app.logo, (250, 20))
+            self.app.screen.blit(pygame.image.load('icons/mouse.png'), (mx - 25, my - 25))
 
             pygame.display.update()

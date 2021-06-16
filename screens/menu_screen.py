@@ -22,6 +22,11 @@ class Menu_screen():
         self.recommended_icon = pygame.image.load('icons/recommended.jpg')
         self.general_kno_icon = pygame.image.load('icons/general_kno.jpg')
         self.my_account_icon = pygame.image.load('icons/my_account.jpg')
+        self.piano_icon_hov = pygame.image.load('icons/piano_hov.jpg')
+        self.guitar_icon_hov = pygame.image.load('icons/guitar_hov.jpg')
+        self.recommended_icon_hov = pygame.image.load('icons/recommended_hov.jpg')
+        self.general_kno_icon_hov = pygame.image.load('icons/general_kno_hov.jpg')
+        self.my_account_icon = pygame.image.load('icons/my_account.jpg')
         self.locked_chord_icon = pygame.image.load('icons/locked_chord.jpg')
         self.feedback_screen = Feedback_screen(self.app)
         self.user_score = 0
@@ -45,6 +50,7 @@ class Menu_screen():
         running = True
         while running:
             click = False
+
             for event in pygame.event.get():
                 if event.type == QUIT:
                     pygame.quit()
@@ -57,6 +63,8 @@ class Menu_screen():
                     if event.button == 1:
                         click = True
             self.app.screen.fill((0, 0, 0))
+            if click:
+                self.get_user_score()
             # self.app.draw_text( "Nice to C you, "+self.app.current_user, self.app.font, (255, 255, 255), self.app.screen, 20, 10)
 
             mx, my = pygame.mouse.get_pos()
@@ -68,18 +76,31 @@ class Menu_screen():
             feedback_button = pygame.Rect(400, 555, 100, 25)
 
             if piano_button.collidepoint((mx, my)):
+                self.app.screen.blit(self.piano_icon_hov, (250, 150))
                 if click:
                     self.piano_screen.piano()
+            else:
+                self.app.screen.blit(self.piano_icon, (250, 150))
+
             if guitar_button.collidepoint((mx, my)):
                 if click:
-                    if self.get_user_score() > 6:
+                    if self.get_user_score() > 10:
                         self.chords_screen.play_the_piano()
+
             if recommended_button.collidepoint((mx, my)):
+                self.app.screen.blit(self.recommended_icon_hov, (250, 350))
                 if click:
                     self.recommended_screen.recommended()
+            else:
+                self.app.screen.blit(self.recommended_icon, (250, 350))
+
             if general_kno_button.collidepoint((mx, my)):
+                self.app.screen.blit(self.general_kno_icon_hov, (250, 450))
                 if click:
                     self.general_kno_screen.general_kno()
+            else:
+                self.app.screen.blit(self.general_kno_icon, (250, 450))
+
             if my_account_button.collidepoint((mx, my)):
                 if click:
                     self.my_account_screen.get_progress()
@@ -111,25 +132,25 @@ class Menu_screen():
                 self.app.draw_text("Feedback", pygame.font.SysFont('inkfree', 16), (255, 168, 176), self.app.screen,
                                    413, 555)
 
-            self.app.screen.blit(self.piano_icon, (250, 150))
-            if self.user_score < 6:
 
+            if self.user_score < 11:
                 self.app.screen.blit(self.locked_chord_icon, (250, 250))
             else:
-                self.app.screen.blit(self.guitar_icon, (250, 250))
-            self.app.screen.blit(self.recommended_icon, (250, 350))
-            self.app.screen.blit(self.general_kno_icon, (250, 450))
-            # self.app.screen.blit(self.my_account_icon, (400, 525))
-            # self.app.screen.blit(self.my_account_icon, (400, 555))
+                if guitar_button.collidepoint((mx, my)):
+                    self.app.screen.blit(self.guitar_icon_hov, (250, 250))
+                else:
+                    self.app.screen.blit(self.guitar_icon, (250, 250))
+
+
+
+
+
+
             self.app.screen.blit(self.app.bg, (20, 50))
             self.app.screen.blit(self.app.bg1, (700, 50))
-            # pygame.draw.rect(self.app.screen, (255, 162, 193), piano_button)
-            # pygame.draw.rect(self.app.screen, (255, 162, 193), guitar_button)
-            # pygame.draw.rect(self.app.screen, (255, 162, 193), recommended_button)
-            # pygame.draw.rect(self.app.screen, (255, 162, 193), general_kno_button)
-            # pygame.draw.rect(self.app.screen, (255, 162, 193), my_account_button)
 
             self.app.screen.blit(self.app.logo, (250, 20))
 
+            self.app.screen.blit(pygame.image.load('icons/mouse.png'), (mx - 25, my - 25))
 
             pygame.display.update()
