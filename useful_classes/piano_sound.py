@@ -5,7 +5,7 @@ class Piano_sound():
         self.sound=sound
         mixer.init()
         mixer.music.load(sound)
-        mixer.music.set_volume(0.7)
+        mixer.music.set_volume(0.8)
 
     def set_note(self,note):
         mixer.music.load(note)
@@ -15,5 +15,6 @@ class Piano_sound():
 
     def play(self):
         mixer.music.play()
+
     def stop(self):
         mixer.music.stop()

@@ -174,7 +174,7 @@ class My_account_screen():
         running = True
         while running:
             click = False
-            for event in pygame.event.get():
+            for event in pygame.event.get(): #start: code borrowed and improved from source: https://www.youtube.com/watch?v=0RryiSjpJn0&t=386s
                 if event.type == QUIT:
                     pygame.quit()
                     sys.exit()
@@ -184,28 +184,27 @@ class My_account_screen():
                 if event.type == MOUSEBUTTONDOWN:
                     if event.button == 1:
                         click = True
-            self.app.screen.fill((0, 0, 0))
+            self.app.screen.fill((0, 0, 0))     #end: code borrowed and improved from source: https://www.youtube.com/watch?v=0RryiSjpJn0&t=386s
             self.app.draw_text('Progress', self.app.font, self.app.color, self.app.screen, 330, 70)
             self.app.draw_text('Graduation', self.app.font, self.app.color, self.app.screen, 630, 70)
             self.app.draw_text('my account', self.app.font, self.app.color, self.app.screen, 20, 20)
-
 
             p_progress = int(self.p_progress * 200 / self.total_piano)
             chord_progress = int(self.chords_progress * 200 / self.total_chords)
             gn_progress = int(self.gn_progress * 200 / self.total_gn)
 
             pygame.draw.rect(self.app.screen, self.app.color, pygame.Rect(300, 150, p_progress, 30))
-            pygame.draw.line(self.app.screen, (255, 162, 193), (350-8, 150),
-                             (350-8, 178))
+            pygame.draw.line(self.app.screen, (255, 162, 193), (350 - 8, 150),
+                             (350 - 8, 178))
             pygame.draw.rect(self.app.screen, (255, 162, 193), pygame.Rect(300, 150, 200, 30), 1)
             self.app.draw_text('Piano basics', self.app.font, self.app.color, self.app.screen, 100, 145)
-            self.app.draw_text(str(self.p_days_left) + ' days', self.app.font, self.app.color, self.app.screen, 650,
+            self.app.draw_text(str(self.p_days_left*2) + ' days', self.app.font, self.app.color, self.app.screen, 650,
                                145)
 
             pygame.draw.rect(self.app.screen, (255, 162, 193), pygame.Rect(300, 250, chord_progress, 30))
             pygame.draw.rect(self.app.screen, (255, 162, 193), pygame.Rect(300, 250, 200, 30), 1)
             self.app.draw_text('Piano Chords', self.app.font, self.app.color, self.app.screen, 100, 245)
-            self.app.draw_text(str(self.chords_days_left) + ' days', self.app.font, self.app.color, self.app.screen,
+            self.app.draw_text(str(self.chords_days_left*3) + ' days', self.app.font, self.app.color, self.app.screen,
                                650, 245)
 
             pygame.draw.rect(self.app.screen, (255, 162, 193), pygame.Rect(300, 350, gn_progress, 30))

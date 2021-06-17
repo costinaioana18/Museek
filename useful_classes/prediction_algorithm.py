@@ -21,8 +21,6 @@ class Prediction_Algorithm:
                 [instance["piano_c"], instance["piano_l"], instance["piano_r"], instance["gen_c"], instance["chords"],
                  instance["topic"]])
             vectorY.append(instance["result"])
-        # print(vectorX)
-        # print(vectorY)
         clf = svm.SVC(probability=True)
         clf.fit(vectorX, vectorY)
         self.trained_model = clf
@@ -67,35 +65,3 @@ class Prediction_Algorithm:
         print(maxi_el)
         return maxi_el
 
-    # def recommendation_heuristic(self, done, total, probability):
-    #     to_do=total-done
-    #     progress_number = done - to_do
-    #     priority_number = 1 / self.gauss(progress_number)
-    #     recommendation_heuristic = priority_number * probability
-    #     return recommendation_heuristic
-    #
-    # def get_recommended_category(self):
-    #     maxi_heuristic=0
-    #     maxi_category=None
-    #     probabilities=self.get_probabillity(self.type_vectors)
-    #     for i in range(self.categories_count):
-    #         if self.recommendation_heuristic(self.done[i],self.total[i],probabilities[i]) > maxi_heuristic:
-    #             maxi_category = i
-    #             maxi_heuristic = self.recommendation_heuristic(self.done[i],self.total[i],probabilities[i])
-    #
-    #     return maxi_category
-
-
-        # for el in a:
-        #     a=el
-        # maxi=0.0
-        # maxi_el=None
-        # for i in range(15):
-        #     if a[i]>maxi:
-        #         maxi=a[i]
-        #         maxi_el=i
-        # print(maxi_el)
-        # print(maxi)
-
-    def heuristic(self, type):
-        remaining_questions = 10

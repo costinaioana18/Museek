@@ -40,7 +40,7 @@ class StartUp():
     def main_menu(self):
         while True:
             click = False
-            for event in pygame.event.get():
+            for event in pygame.event.get():    #start: code borrowed and improved from source: https://www.youtube.com/watch?v=0RryiSjpJn0&t=386s
                 if event.type == QUIT:
                     pygame.quit()
                     sys.exit()
@@ -50,7 +50,7 @@ class StartUp():
                         sys.exit()
                 if event.type == MOUSEBUTTONDOWN:
                     if event.button == 1:
-                        click = True
+                        click = True    #end: code borrowed and improved from source: https://www.youtube.com/watch?v=0RryiSjpJn0&t=386s
 
             self.screen.fill((0, 0, 0))
             #self.draw_text("main menu", self.font, (255, 255, 255), self.screen, 20,20)

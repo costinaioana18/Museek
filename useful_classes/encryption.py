@@ -1,6 +1,9 @@
+#code reused from my personal SI project (IIIrd year)
+
 def split_blocks(message):
     return [message[i:i + 16] for i in range(0, len(message), 16)]
 
+#code borrowed from: https://stackoverflow.com/questions/66493774/how-to-calculate-the-xor-of-two-bytes-in-python
 def XoR(t1, t2):
     return bytes([_a ^ _b for _a, _b in zip(t1, t2)])
 

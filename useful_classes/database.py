@@ -4,6 +4,7 @@ from pymongo import MongoClient
 
 
 class Database:
+    #code borrowed and improved from our IP project - CLEF2020 our teams repository: https://github.com/MoisanuStefan/CLEF2020-CheckThat-Lab-Team3
     def __init__(self, connection_string):
         self.__connection_string = connection_string
         self.__database_name = None
@@ -11,11 +12,13 @@ class Database:
         self.__db_handler = None
         self.__collection_handler = None
 
+    # code borrowed and improved from our IP project - CLEF2020 our teams repository: https://github.com/MoisanuStefan/CLEF2020-CheckThat-Lab-Team3
     def database_init(self, database_name):
         self.__database_name = database_name
         self.__client = MongoClient(self.__connection_string,ssl_cert_reqs=ssl.CERT_NONE)
         self.__db_handler = self.__client[self.__database_name]
 
+    # code borrowed and improved from our IP project - CLEF2020 our teams repository: https://github.com/MoisanuStefan/CLEF2020-CheckThat-Lab-Team3
     def set_collection(self, collection_name):
         self.__collection_handler = self.__db_handler[collection_name]
         return self.__collection_handler
@@ -29,6 +32,7 @@ class Database:
             return 1
         else:
             return 0
+
     def get(self,key,value,to_get):
         result = self.__collection_handler.find_one({key: value})
         return result[to_get]

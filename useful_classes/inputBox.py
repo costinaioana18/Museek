@@ -1,6 +1,6 @@
 import pygame as pg
+#This class contains fragments of code inspired by: https://stackoverflow.com/questions/46390231/how-can-i-create-a-text-input-box-with-pygame
 class InputBox:
-
     def __init__(self, x, y, w, h, text=''):
         self.rect = pg.Rect(x, y, w, h)
         self.COLOR_INACTIVE = pg.Color((177, 114, 97))
@@ -14,8 +14,8 @@ class InputBox:
         self.active = False
         self.length=len(text)
 
+    #this functions contains code inspired by:https://stackoverflow.com/questions/46390231/how-can-i-create-a-text-input-box-with-pygame
     def handle_event(self, event,protected=False):
-
         if event.type == pg.MOUSEBUTTONDOWN:
             # If the user clicked on the input_box rect.
             if self.rect.collidepoint(event.pos):
@@ -41,7 +41,6 @@ class InputBox:
                 else:
                     self.text += event.unicode
                     self.protected_text+='*'
-                # Re-render the text.
                 if protected:
                     self.txt_surface = self.FONT.render(self.protected_text, True, self.color)
                 else:
@@ -50,6 +49,7 @@ class InputBox:
     def set_text(self,text):
         self.text=text
 
+    #this function contains code inspired by:https://stackoverflow.com/questions/46390231/how-can-i-create-a-text-input-box-with-pygame
     def update(self):
         # Resize the box if the text is too long.
         width = max(400, self.txt_surface.get_width()+10)

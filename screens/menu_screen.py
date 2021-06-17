@@ -51,7 +51,7 @@ class Menu_screen():
         while running:
             click = False
 
-            for event in pygame.event.get():
+            for event in pygame.event.get(): #code borrowed and improved from source: https://www.youtube.com/watch?v=0RryiSjpJn0&t=386s
                 if event.type == QUIT:
                     pygame.quit()
                     sys.exit()
@@ -62,7 +62,8 @@ class Menu_screen():
                 if event.type == MOUSEBUTTONDOWN:
                     if event.button == 1:
                         click = True
-            self.app.screen.fill((0, 0, 0))
+            self.app.screen.fill((0, 0, 0))         #code borrowed and improved from source: https://www.youtube.com/watch?v=0RryiSjpJn0&t=386s
+                                                    #end
             if click:
                 self.get_user_score()
             # self.app.draw_text( "Nice to C you, "+self.app.current_user, self.app.font, (255, 255, 255), self.app.screen, 20, 10)
@@ -110,7 +111,7 @@ class Menu_screen():
                     print("here")
                     self.my_account_screen.my_account()
                 else:
-                    self.app.draw_text("My account", pygame.font.SysFont('inkfree', 16,bold=True), (255, 168, 176),
+                    self.app.draw_text("My account", pygame.font.SysFont('inkfree', 16, bold=True), (255, 168, 176),
                                        self.app.screen,
                                        408, 525)
 
@@ -132,7 +133,6 @@ class Menu_screen():
                 self.app.draw_text("Feedback", pygame.font.SysFont('inkfree', 16), (255, 168, 176), self.app.screen,
                                    413, 555)
 
-
             if self.user_score < 11:
                 self.app.screen.blit(self.locked_chord_icon, (250, 250))
             else:
@@ -140,11 +140,6 @@ class Menu_screen():
                     self.app.screen.blit(self.guitar_icon_hov, (250, 250))
                 else:
                     self.app.screen.blit(self.guitar_icon, (250, 250))
-
-
-
-
-
 
             self.app.screen.blit(self.app.bg, (20, 50))
             self.app.screen.blit(self.app.bg1, (700, 50))
