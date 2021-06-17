@@ -19,7 +19,7 @@ MuSeek was designed to make the idea of learning the piano easier and fun.
 
 - GO WITH THE FLOW
 
-    ...Using our recommended section, containing levels specially picked for you
+    ...Using our recommended section, containing levels specially chosen for you
 
 - HELP US HELP YOU GROW
 
