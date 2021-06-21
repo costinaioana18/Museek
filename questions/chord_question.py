@@ -37,7 +37,6 @@ class Chord_Question():
         self.current_position = -1
         self.current_answer = [-1, -1, -1]
         self.set_random()
-        print(self.answer)
         self.question = "Play chord " + self.chords_name[self.answer]
         self.right_answer = self.chords[self.answer]
         self.sound = self.chords_sounds[self.answer]
@@ -52,11 +51,6 @@ class Chord_Question():
             self.current_position = 0
         if (self.current_position == 2 and self.current_answer[2] == -1):
             self.current_answer[self.current_position] = i
-            # for i in range(0, 3):
-            #     self.app.draw_text(self.notex_title_list[self.current_answer[i]], self.app.font, (255, 255, 255),
-            #                        self.app.screen, 300 + i * 50, 100)
-
-            # self.check_answer()
         elif self.current_position <= 1:
             self.current_answer[self.current_position] = i
             self.current_position += 1
@@ -74,7 +68,6 @@ class Chord_Question():
         self.checked = 0
 
     def check_answer(self):
-        print("check")
         self.current_position = 0
         correct = self.is_correct()
         if correct == 1:
@@ -82,8 +75,6 @@ class Chord_Question():
             self.database_handler.database_init("users")
             self.mycol = self.database_handler.set_collection("users_data")
             self.database_handler.increment_database("username", self.app.current_user, "chords_s", 1)
-            print("raspuns corect")
-
             self.database_handler.database_init("users_progress")
             self.mycol = self.database_handler.set_collection(self.app.current_user)
             self.database_handler.insert(
@@ -103,8 +94,6 @@ class Chord_Question():
                  "topic": self.topic[self.answer], "result": 0})
 
         self.checked = 1
-
-        print("check")
 
     def display(self):
         self.app.draw_text(self.question, self.app.font, (255, 255, 255), self.app.screen, 310, 50)

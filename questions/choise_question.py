@@ -92,11 +92,6 @@ class Choice_Question():
         for i in range(4):
             self.app.draw_text(self.answers[i], self.font, (255, 255, 255), self.app.screen, 250, 150 + i * 75)
 
-        # self.app.draw_text(self.answers[0], self.font, (255, 255, 255), self.app.screen, 250, 150)
-        # self.app.draw_text(self.answers[1], self.font, (255, 255, 255), self.app.screen, 250, 225)
-        # self.app.draw_text(self.answers[2], self.font, (255, 255, 255), self.app.screen, 250, 300)
-        # self.app.draw_text(self.answers[3], self.font, (255, 255, 255), self.app.screen, 250, 375)
-
         if self.received_answer > -1 and self.received_answer < 4:
             pygame.draw.rect(self.app.screen, (255, 162, 193), self.buttons_coord[self.received_answer])
 

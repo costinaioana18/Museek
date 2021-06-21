@@ -67,7 +67,6 @@ class Gen_Kno_Question():
         if self.right_ans == self.received_answer:
             self.outcome = "Congratulations!"
             self.database_handler.increment_database("username", self.app.current_user, "gen_c_s", 1)
-            print("incremented")
             self.database_handler.database_init("users_progress")
             self.mycol = self.database_handler.set_collection(self.app.current_user)
             self.database_handler.insert(
@@ -91,11 +90,6 @@ class Gen_Kno_Question():
 
         for i in range(4):
             self.app.draw_text(self.answers[i], self.font, (255, 255, 255), self.app.screen, 250, 150 + i * 75)
-
-        # self.app.draw_text(self.answers[0], self.font, (255, 255, 255), self.app.screen, 250, 150)
-        # self.app.draw_text(self.answers[1], self.font, (255, 255, 255), self.app.screen, 250, 225)
-        # self.app.draw_text(self.answers[2], self.font, (255, 255, 255), self.app.screen, 250, 300)
-        # self.app.draw_text(self.answers[3], self.font, (255, 255, 255), self.app.screen, 250, 375)
 
         if self.received_answer > -1 and self.received_answer < 4:
             pygame.draw.rect(self.app.screen, (255, 162, 193), self.buttons_coord[self.received_answer])

@@ -6,7 +6,6 @@ import random
 class Read_Question():
     def __init__(self, app, question_no):
         self.checked = 0
-        print("read")
         self.question_no = question_no
         self.mx = None
         self.my = None
@@ -51,14 +50,10 @@ class Read_Question():
 
         self.note_icon1 = pygame.image.load(self.note_icon)
         self.piano_icon1 = pygame.image.load(self.piano_icon)
-        # self.set_next()
 
     def receive_answer(self, mx, my):
-        print(mx)
-        print(my)
         for i in range(12):
             if (self.a_buttons[i].collidepoint((mx, my))):
-                print(i)
                 self.piano_sound.set_note(self.sounds_list[i])
                 self.piano_icon1 = pygame.image.load(self.notes_icon_list[i])
                 self.received_answer = i
@@ -68,7 +63,6 @@ class Read_Question():
 
     def check_answer(self):
         self.checked = 1
-
         self.database_handler.database_init("users")
         self.mycol = self.database_handler.set_collection("users_data")
         if self.right_ans == self.received_answer:
@@ -84,7 +78,6 @@ class Read_Question():
         else:
             self.checked = -1
             self.database_handler.increment_database("username", self.app.current_user, "piano_r_f", 1)
-
             self.database_handler.database_init("users_progress")
             self.mycol = self.database_handler.set_collection(self.app.current_user)
             self.database_handler.insert(
@@ -93,7 +86,6 @@ class Read_Question():
 
     def set_random(self):
         i = random.randint(0, 11)
-
         self.right_ans = i
         self.note_icon1 = pygame.image.load(self.notes_icon_list1[i])
 
@@ -101,9 +93,7 @@ class Read_Question():
     def display(self):
         self.app.draw_text(self.question, self.font, (255, 255, 255), self.app.screen, 250, 50)
         self.app.screen.blit(self.note_icon1, (250, 250))
-
         self.app.screen.blit(self.piano_icon1, (450, 200))
-
         if self.checked != 0:
             self.piano_icon1 = pygame.image.load(self.right_icons[self.right_ans])
             if self.checked == -1:

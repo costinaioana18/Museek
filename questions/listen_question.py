@@ -8,7 +8,6 @@ class Listen_Question():
         self.checked = 0
         self.mx = None
         self.my = None
-        print("listen")
         self.question_no = question_no
         self.database_handler = app.database_handler
         self.received_question = None
@@ -48,8 +47,6 @@ class Listen_Question():
         self.piano_icon1 = pygame.image.load('icons/pianoo.jpg')
 
     def receive_answer(self, mx, my):
-        print(mx)
-        print(my)
         for i in range(12):
             if (self.a_buttons[i].collidepoint((mx, my))):
                 print(i)
@@ -69,7 +66,6 @@ class Listen_Question():
         self.database_handler.database_init("users")
         self.mycol = self.database_handler.set_collection("users_data")
         if self.right_ans == self.received_answer:
-            print("raspuns corect")
             self.database_handler.increment_database("username", self.app.current_user, "piano_l_s", 1)
             self.database_handler.database_init("users_progress")
             self.mycol = self.database_handler.set_collection(self.app.current_user)
@@ -78,7 +74,6 @@ class Listen_Question():
                  "topic": self.right_ans, "result": 1})
         else:
             self.checked = -1
-            print("raspuns gresit")
             self.database_handler.increment_database("username", self.app.current_user, "piano_l_f", 1)
             self.database_handler.database_init("users_progress")
             self.mycol = self.database_handler.set_collection(self.app.current_user)
